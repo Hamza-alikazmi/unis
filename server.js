@@ -124,14 +124,14 @@ app.delete('/removeLink', async (req, res) => {
 });
 
 // Route to clear all links
-router.delete('/clearLinks', (req, res) => {
-  try {
-    db.get('links').remove().write(); // Clears the 'links' array in the database
-    res.status(200).json({ success: true, message: 'All links deleted' });
-  } catch (error) {
-    res.status(500).json({ success: false, message: 'Failed to delete links' });
-  }
-});
+//router.delete('/clearLinks', (req, res) => {
+  //try {
+    //db.get('links').remove().write(); // Clears the 'links' array in the database
+    //res.status(200).json({ success: true, message: 'All links deleted' });
+  //} catch (error) {
+    //res.status(500).json({ success: false, message: 'Failed to delete links' });
+  //}
+//});
 
-module.exports = router;
+//module.exports = router;
 
