@@ -295,15 +295,21 @@ let allLinks = [];
 
 // Function to load and display embedded links
 async function loadLinks() {
-  console.log('loadLinks called');
+  try {
+    const response = await fetch('/links');
+    const data = await response.json();
 
-  const response = await fetch('/links');
-  const data = await response.json();
+    console.log('Links response:', data);
 
-  console.log('Links response:', data);
-
-  if (data.success) {
-    const links = data.data;
+    if (data.success && Array.isArray(data.data)) {
+      // Proceed to handle the links...
+    } else {
+      console.error('No links found or invalid response format');
+    }
+  } catch (error) {
+    console.error('Error fetching links:', error);
+  }
+}
 
     // Ensure links is an array
     if (!Array.isArray(links)) {
