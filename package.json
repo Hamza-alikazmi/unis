@@ -6,10 +6,10 @@
   "scripts": {
     "start": "node server.js"
   },
-  "dependencies": {
-    "express": "^your-express-version",
-    "lowdb": "^your-lowdb-version",
-    "body-parser": "^your-body-parser-version",
-    "cors": "^your-cors-version"
-  }
+ "dependencies": {
+    "express": "4.21.1",
+    "lowdb": "7.0.1",
+    "body-parser": "^1.20.1",
+    "cors": "2.8.5"
+}
 }
