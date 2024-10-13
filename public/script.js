@@ -2,19 +2,24 @@
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('linkForm').addEventListener('submit', async (event) => {
     event.preventDefault();
-    try {
-      const linkName = document.getElementById('linkName').value;
-      const linkUrl = document.getElementById('linkUrl').value;
+    
+    // Retrieve values from the form
+    const linkName = document.getElementById('linkName').value.trim();
+    const linkUrl = document.getElementById('linkUrl').value.trim();
 
+    // Validate input
+    if (!linkName || !linkUrl) {
+      console.error('Link name and URL are required.');
+      return; // Exit the function if validation fails
+    }
+
+    try {
       const response = await fetch('/saveLink', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          linkName,
-          linkUrl
-        })
+        body: JSON.stringify({ linkName, linkUrl })
       });
 
       if (response.ok) {
@@ -23,7 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
         loadLinks(); // Reload links
         event.target.reset(); // Reset form
       } else {
-        console.error('Failed to save link');
+        const errorData = await response.json(); // Attempt to get error details from response
+        console.error('Failed to save link:', errorData.message || 'Unknown error');
       }
     } catch (error) {
       console.error('Error:', error);
@@ -45,6 +51,8 @@ async function loadLinks() {
 
   if (data.success) {
     const links = data.data;
+
+    // Ensure links is an array
     if (!Array.isArray(links)) {
       console.error('Error: links is not an array');
       return;
@@ -53,9 +61,9 @@ async function loadLinks() {
     console.log('New links:', links);
 
     // Remove duplicates from the new links
-    const uniqueLinks = links.filter((link, index, self) => {
-      return self.findIndex((f) => f.url === link.url) === index;
-    });
+    const uniqueLinks = links.filter((link, index, self) =>
+      self.findIndex((f) => f.url === link.url) === index
+    );
 
     // Loop through the new links and add them to allLinks only if they don't exist
     uniqueLinks.forEach((link) => {
@@ -72,18 +80,15 @@ async function loadLinks() {
     const embeddedContent = document.getElementById('embeddedContent');
     embeddedContent.innerHTML = ''; // Clear the container
 
+    // Append new links to the content
     allLinks.forEach((link) => {
       const linkElement = `
-
-          <div class="post">
-          
-          <button class="post"> 
-          
+        <div class="post">
+          <button class="post">
             <h2 class="file-name" onclick="toggleContent(this)">${link.name}</h2>
           </button>
           <div class="content" style="display: none;">
-            <iframe src="${link.url}" 
-              width="auto" height="569" allow="autoplay" frameborder="0" allowfullscreen></iframe>
+            <iframe src="${link.url}" width="auto" height="569" allow="autoplay" frameborder="0" allowfullscreen></iframe>
             <button class="remove" data-url="${link.url}" onclick="removeLink(this)">Remove</button>
           </div>
         </div>
@@ -91,19 +96,14 @@ async function loadLinks() {
       embeddedContent.innerHTML += linkElement; // Append new links
     });
   } else {
-    console.error(data.message);
+    console.error(data.message || 'Failed to load links');
   }
 }
 
 // Function to open the link in the iframe
 function toggleContent(element) {
   let contentDiv = element.parentNode.nextElementSibling; // Get the next sibling (the content div)
-
-  if (contentDiv.style.display === "none" || contentDiv.style.display === "") {
-    contentDiv.style.display = "block"; // Show the content
-  } else {
-    contentDiv.style.display = "none"; // Hide the content
-  }
+  contentDiv.style.display = (contentDiv.style.display === "none" || contentDiv.style.display === "") ? "block" : "none"; // Toggle visibility
 }
 
 // Function to remove a link
@@ -138,23 +138,23 @@ window.onload = async function() {
   await loadLinks(); // Load links
 };
 
+// Search functionality
 function searchPosts() {
   let input = document.getElementById('search-bar').value.toLowerCase();
   let posts = document.getElementsByClassName('post');
 
   if (input.trim() === "") {
-    for (let i = 0; i < posts.length; i++) {
-      posts[i].style.display = ""; // Show all posts
-    }
+    Array.from(posts).forEach(post => post.style.display = ""); // Show all posts
     return; // Exit the function
   }
 
-  for (let i = 0; i < posts.length; i++) {
-    let fileName = posts[i].getElementsByClassName('file-name')[0].innerText.toLowerCase();
-    posts[i].style.display = fileName.includes(input) ? "" : "none"; // Show or hide the post
-  }
+  Array.from(posts).forEach(post => {
+    let fileName = post.getElementsByClassName('file-name')[0].innerText.toLowerCase();
+    post.style.display = fileName.includes(input) ? "" : "none"; // Show or hide the post
+  });
 }
 
+// Check for 'Enter' key in search
 function checkEnter(event) {
   if (event.key === "Enter") {
     searchPosts();
