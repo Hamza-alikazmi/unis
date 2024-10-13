@@ -70,6 +70,7 @@ body:hover {
 }
 
 .remove {
+  display: ;
   background-color: #dc3545; /* Bootstrap Red */
   color: white;
   border: none;
@@ -171,6 +172,7 @@ body:hover {
   }
 
   .remove {
+    display: ;
     margin-left: 0;
     width: 100%; /* Full width button for easier interaction on mobile */
     font-size: 0.9rem;
