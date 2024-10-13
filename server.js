@@ -41,22 +41,20 @@ async function initDb() {
 
 // Route to handle form submission and save the link in db.json
 app.post('/saveLink', async (req, res) => {
-  if (!req.body) {
-    return res.status(400).json({ error: 'Invalid request body' });
-  }
   const { linkName, linkUrl } = req.body;
-
-  await db.read();  // Read the latest data from db.json
-  if (!db.data) {
-    db.data = { links: [] }; // Initialize with an empty array for links
+  
+  if (!linkName || !linkUrl) {
+    return res.status(400).json({ success: false, message: 'Link name and URL are required.' });
   }
-  db.data.links.push({ name: linkName, url: linkUrl });  // Add the new link to the array
-  await db.write();  // Write the updated data back to db.json
 
-  res.json({
-    success: true,
-    data: { name: linkName, url: linkUrl }
-  });
+  try {
+    // Assume saveLink is a function that saves a link to your database
+    await saveLink({ name: linkName, url: linkUrl });
+    res.json({ success: true, message: 'Link saved successfully.' });
+  } catch (error) {
+    console.error('Error saving link:', error);
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
 });
 
 // Route to fetch the stored links
