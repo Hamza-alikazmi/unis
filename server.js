@@ -16,6 +16,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
+// Route to serve the main HTML page for the root URL
+app.get('/', (req, res) => {
+  res.sendFile(`${__dirname}/public/index.html`); // Make sure to adjust the path if needed
+});
+
+
 // Initialize the database with default values if empty
 async function initDb() {
   await db.read();
