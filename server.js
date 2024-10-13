@@ -16,12 +16,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-// Route to serve the main HTML page for the root URL
-app.get('/', (req, res) => {
-  res.sendFile(`${__dirname}/public/index.html`); // Make sure to adjust the path if needed
-});
-
-
 // Initialize the database with default values if empty
 async function initDb() {
   await db.read();
@@ -40,7 +34,7 @@ async function initDb() {
 app.use(express.static('public'));
 
 // Route to handle form submission and save the link in db.json
-app.post('/api/saveLink', async (req, res) => { // Updated route
+app.post('/saveLink', async (req, res) => {
   if (!req.body) {
     return res.status(400).json({ error: 'Invalid request body' });
   }
@@ -66,7 +60,7 @@ app.post('/api/saveLink', async (req, res) => { // Updated route
 });
 
 // Route to fetch the stored links
-app.get('/api/links', async (req, res) => { // Updated route
+app.get('/links', async (req, res) => {
   await db.read();  // Read the latest data from db.json
 
   if (db.data && db.data.links && db.data.links.length > 0) {
@@ -88,8 +82,9 @@ app.listen(port, async () => {
   console.log(`Server running at http://localhost:${port}`);
 });
 
+
 // Route to handle removing a link from the database
-app.delete('/api/removeLink', async (req, res) => { // Updated route
+app.delete('/removeLink', async (req, res) => {
   const { url } = req.body; // Extract the URL from the request body
   await db.read(); // Read the latest data from db.json
 
@@ -103,14 +98,40 @@ app.delete('/api/removeLink', async (req, res) => { // Updated route
   }
 });
 
-// Route to clear all links
-app.delete('/api/clearLinks', async (req, res) => { // Updated route
+
+
+// Route to remove a link by its URL
+app.delete('/removeLink', async (req, res) => {
+  const { url } = req.body; // Get the URL from the request body
+
   await db.read(); // Read the latest data from db.json
+
   if (db.data && db.data.links) {
-    db.data.links = []; // Clear the links array
+    // Filter out the link to be removed
+    db.data.links = db.data.links.filter(link => link.url !== url);
     await db.write(); // Write the updated data back to db.json
-    res.status(200).json({ success: true, message: 'All links deleted' });
+
+    res.json({
+      success: true,
+      message: 'Link removed successfully'
+    });
   } else {
-    res.status(400).json({ success: false, message: 'No links to clear' });
+    res.json({
+      success: false,
+      message: 'Link not found'
+    });
   }
 });
+
+// Route to clear all links
+router.delete('/clearLinks', (req, res) => {
+  try {
+    db.get('links').remove().write(); // Clears the 'links' array in the database
+    res.status(200).json({ success: true, message: 'All links deleted' });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Failed to delete links' });
+  }
+});
+
+module.exports = router;
+
