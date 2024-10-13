@@ -1,0 +1,178 @@
+body {
+  background-color: #362c2c; /* Initial background color (Dark Gray) */
+  color: white;
+  font-family: Arial, sans-serif;
+  transition: background-color 2s ease-in-out; /* 2s transition for the background color */
+}
+
+body:hover {
+  color: #17252a;
+  background-color: #3aafa9; /* Change to Firebrick Red on hover */
+}
+
+/* _______________________________________________________________Navbar brand hover transition________________________*/
+.navbar-brand {
+  transition: color 0.3s ease, transform 0.3s ease-in-out;
+  margin: 1%;
+}
+
+.navbar-brand:hover {
+  flex-direction: column;
+  color: #0056b3; /* Change to a darker blue on hover */
+  transform: scale(1.1); /* Slight zoom on hover */
+}
+
+/* Navbar links transition */
+.nav-link {
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  color: #3aafa9;
+  font-weight: bolder;
+  border-radius: 50%;
+}
+
+/* Search button transition */
+#search-button {
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+#search-button:hover {
+  background-color: #28a745; /* Change background to green */
+  border-color: #28a745;
+}
+
+/* Navbar toggler icon transition */
+.navbar-toggler {
+  transition: transform 0.3s ease-in-out;
+}
+
+.navbar-toggler:hover {
+  transform: rotate(90deg); /* Rotates when hovered */
+}
+
+/* Smooth collapse transition */
+.collapse {
+  transition: height 0.5s ease;
+}
+
+/* WhatsApp icon transition */
+.whatsapp-icon {
+  margin-left: 10px;
+  font-size: 2.5em;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.whatsapp-icon:hover {
+  color: #25d366; /* WhatsApp green */
+  transform: scale(1.2); /* Slightly zoom in on hover */
+}
+
+.remove {
+  background-color: #dc3545; /* Bootstrap Red */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 5px;
+  margin-left: 80%;
+  margin-top: 0%;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+#submission-form {
+  width: 30%; /* Fixed width for the submission form */
+  background-color: #8dc6ff; /* Light background color */
+  padding: 20px;
+  border-right: 1px solid #ccc; /* Divider between sections */
+  overflow-y: hidden; /* Prevent scrolling */
+}
+
+#submission-form:hover {
+  background-color: #0000;
+}
+
+/* ______________________________________________Content area styling___________________________*/
+#embeddedContent {
+  flex: 1; /* Take remaining space */
+  overflow-y: auto; /* Enable scrolling */
+  padding: 20px; /* Padding for content area */
+}
+
+.post {
+  background: linear-gradient(270deg, rgba(34, 34, 34, 1), rgb(57, 14, 114)); /* Dark gradient */
+  background-size: 400% 400%; /* Size of the gradient */
+  animation: gradientAnimation 5s ease infinite; /* Animation for the gradient */
+  background-origin: padding-box;
+  border: 4px black solid; /* Solid black border */
+  display: block;
+  width: 98%;
+  margin: 1px;
+  padding: 8px;
+  border-radius: 5%; /* Rounded corners */
+  color: white; /* Text color for better contrast */
+  transition: transform 0.3s ease; /* Smooth scaling effect */
+}
+
+#note {
+  color: #dc3545;
+  font-weight: bolder;
+}
+
+#not {
+  color: #dc3545;
+  text-decoration: line-through;
+  flex: 1;
+  font-weight: bolder;
+}
+
+.post:hover {
+  background: radial-gradient(270deg, rgb(138, 135, 135), rgb(248, 245, 255));
+  transform: scale(1.02); /* Slightly scale the post on hover */
+}
+
+/* Flex container for submission form and embedded content */
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh; /* Take full height of the viewport */
+}
+
+/* Media queries for small devices */
+@media (max-width: 768px) {
+  #submission-form {
+    width: 100%; /* Full width for smaller devices */
+    padding: 10px; /* Reduce padding */
+    border-right: none; /* Remove the right border */
+  }
+
+  .flex-container {
+    flex-direction: column; /* Stack submission form and embedded content vertically */
+    height: auto; /* Let the height adjust naturally */
+  }
+
+  .post {
+    width: 100%; /* Make posts take full width */
+    margin: 10px 0; /* Add spacing between posts */
+    padding: 10px; /* Increase padding for better touch interaction */
+  }
+
+  .remove {
+    margin-left: 0;
+    width: 100%; /* Full width button for easier interaction on mobile */
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "your-project-name",
+  "version": "1.0.0",
+  "type": "module",  
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^your-express-version",
+    "lowdb": "^your-lowdb-version",
+    "body-parser": "^your-body-parser-version",
+    "cors": "^your-cors-version"
+  }
+}
