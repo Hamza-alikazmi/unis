@@ -3,6 +3,9 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
+import path from 'path';
+
+
 
 const app = express();
 const port = process.env.PORT || 3000; // Use the Vercel port or default to 3000
