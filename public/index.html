@@ -313,30 +313,27 @@ document.addEventListener('DOMContentLoaded', () => {
       const linkName = document.getElementById('linkName').value;
       const linkUrl = document.getElementById('linkUrl').value;
 
-      const response = await fetch('/saveLink', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          linkName,
-          linkUrl
-        })
-      });
+      const saveLink = async (linkName, linkUrl) => {
+    try {
+        const response = await fetch('https://unis-green.vercel.app/saveLink', { // Replace with your actual Vercel app URL
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ linkName, linkUrl }),
+        });
 
-      if (response.ok) {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+
         const data = await response.json();
-        console.log(data); // Log response data
-        loadLinks(); // Reload links
-        event.target.reset(); // Reset form
-      } else {
-        console.error('Failed to save link');
-      }
+        console.log('Link saved successfully:', data);
     } catch (error) {
-      console.error('Error:', error);
+        console.error('Failed to save link:', error);
     }
-  });
-});
+};
+
 
 // Variable to store all links
 let allLinks = [];
