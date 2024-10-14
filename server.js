@@ -3,10 +3,9 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
-import path from 'path'; // Import path for handling file paths
+import path from 'path';
 
 const app = express();
-const port = process.env.PORT || 3000; // Use the Vercel port or default to 3000
 
 // Set up lowdb with JSONFile adapter
 const adapter = new JSONFile('db.json');  // This is where the data will be saved
@@ -17,38 +16,47 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-// Serve static files (HTML, CSS, JS)
-app.use(express.static('public'));
-
-// Route to serve the main HTML page for the root URL
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html')); // Use path.join for cross-platform compatibility
-});
-
 // Initialize the database with default values if empty
 async function initDb() {
   await db.read();
-  if (!db.data) {
+  if (!adapter.fileExists) {
     db.data = { links: [] }; // Initialize with an empty array for links
     await db.write(); // Write the initial structure to the db.json
+  } else if (!db.data) {
+    db.data = { links: [] }; // Initialize with an empty array for links
+    await db.write(); // Write the initial structure to the db.json
+  } else if (!db.data.links) {
+    db.data.links = []; // Initialize links array if it doesn't exist
   }
 }
 
-// Route to handle form submission and save the link in db.json
-app.post('/saveLink', async (req, res) => {
-  const { linkName, linkUrl } = req.body;
+// Serve static files from the public directory
+app.use(express.static(path.join(__dirname, 'public')));
 
-  if (!linkName || !linkUrl) {
+// Fallback to index.html for other routes (if needed)
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// Route to handle form submission and save the link in db.json
+app.post('/api/saveLink', async (req, res) => {
+  if (!req.body) {
     return res.status(400).json({ error: 'Invalid request body' });
   }
+  const { linkName, linkUrl } = req.body;
 
-  await db.read(); // Read the latest data from db.json
+  await db.read();  // Read the latest data from db.json
+  if (!adapter.fileExists) {
+    db.data = { links: [] }; // Initialize with an empty array for links
+  }
+  if (!db.data) {
+    db.data = { links: [] }; // Initialize with an empty array for links
+  }
   if (!db.data.links) {
     db.data.links = []; // Initialize links array if it doesn't exist
   }
-
-  db.data.links.push({ name: linkName, url: linkUrl }); // Add the new link to the array
-  await db.write(); // Write the updated data back to db.json
+  db.data.links.push({ name: linkName, url: linkUrl });  // Add the new link to the array
+  await db.write();  // Write the updated data back to db.json
 
   res.json({
     success: true,
@@ -57,8 +65,8 @@ app.post('/saveLink', async (req, res) => {
 });
 
 // Route to fetch the stored links
-app.get('/links', async (req, res) => {
-  await db.read(); // Read the latest data from db.json
+app.get('/api/links', async (req, res) => {
+  await db.read();  // Read the latest data from db.json
 
   if (db.data && db.data.links && db.data.links.length > 0) {
     res.json({
@@ -74,17 +82,14 @@ app.get('/links', async (req, res) => {
 });
 
 // Route to remove a link by its URL
-app.delete('/removeLink', async (req, res) => {
+app.delete('/api/removeLink', async (req, res) => {
   const { url } = req.body; // Get the URL from the request body
-
-  if (!url) {
-    return res.status(400).json({ error: 'Invalid request body' });
-  }
 
   await db.read(); // Read the latest data from db.json
 
   if (db.data && db.data.links) {
-    db.data.links = db.data.links.filter(link => link.url !== url); // Filter out the link to be removed
+    // Filter out the link to be removed
+    db.data.links = db.data.links.filter(link => link.url !== url);
     await db.write(); // Write the updated data back to db.json
 
     res.json({
@@ -92,28 +97,12 @@ app.delete('/removeLink', async (req, res) => {
       message: 'Link removed successfully'
     });
   } else {
-    res.status(400).json({
+    res.json({
       success: false,
       message: 'Link not found'
     });
   }
 });
 
-// Route to clear all links
-app.delete('/clearLinks', async (req, res) => {
-  await db.read(); // Read the latest data from db.json
-
-  if (db.data && db.data.links) {
-    db.data.links = []; // Clear the links array
-    await db.write(); // Write the updated data back to db.json
-    res.status(200).json({ success: true, message: 'All links deleted' });
-  } else {
-    res.status(400).json({ success: false, message: 'No links to clear' });
-  }
-});
-
-// Start the server
-app.listen(port, async () => {
-  await initDb();  // Initialize the database
-  console.log(`Server running at http://localhost:${port}`);
-});
+// Export the app as a Vercel function
+export default app;
