@@ -28,31 +28,34 @@ app.get('/', (req, res) => {
 // Initialize the database with default values if empty
 async function initDb() {
   await db.read();
-  if (!adapter.fileExists) {
+  if (!db.data || !db.data.links) {
     db.data = { links: [] }; // Initialize with an empty array for links
     await db.write(); // Write the initial structure to the db.json
-  } else if (!db.data) {
-    db.data = { links: [] }; // Initialize with an empty array for links
-    await db.write(); // Write the initial structure to the db.json
-  } else if (!db.data.links) {
-    db.data.links = []; // Initialize links array if it doesn't exist
   }
 }
 
 // Route to handle form submission and save the link in db.json
 app.post('/saveLink', async (req, res) => {
   try {
-    if (!req.body) {
-      return res.status(400).json({ error: 'Invalid request body' });
-    }
     const { linkName, linkUrl } = req.body;
+
+    // Validate request
+    if (!linkName || !linkUrl) {
+      return res.status(400).json({ success: false, message: 'Link name and URL are required.' });
+    }
 
     await db.read(); // Read the latest data from db.json
     console.log("Data read from db.json:", db.data);
 
-    // Initialize links array if necessary
+    // Ensure links array exists
     if (!db.data.links) {
       db.data.links = []; // Initialize with an empty array for links
+    }
+
+    // Check for duplicate links before adding
+    const existingLink = db.data.links.find(link => link.url === linkUrl);
+    if (existingLink) {
+      return res.status(409).json({ success: false, message: 'Link already exists.' });
     }
 
     db.data.links.push({ name: linkName, url: linkUrl }); // Add the new link to the array
@@ -67,6 +70,7 @@ app.post('/saveLink', async (req, res) => {
     res.status(500).json({ success: false, message: 'Internal server error' });
   }
 });
+
 // Route to fetch the stored links
 app.get('/links', async (req, res) => {
   await db.read();  // Read the latest data from db.json
