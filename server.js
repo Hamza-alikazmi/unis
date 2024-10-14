@@ -9,7 +9,7 @@ const app = express();
 const port = process.env.PORT || 3000; // Use the Vercel port or default to 3000
 
 // Set up lowdb with JSONFile adapter
-const adapter = new JSONFile(path.join(process.cwd(), 'db.json'));   // This is where the data will be saved
+const adapter = new JSONFile(path.join(process.cwd(), 'db.json')); // This is where the data will be saved
 const db = new Low(adapter, {}); // Pass an empty object as the default data
 
 // Middleware
@@ -18,11 +18,11 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Serve static files (HTML, CSS, JS)
-app.use(express.static('public'));
+app.use(express.static(path.join(process.cwd(), 'public'))); // Use path.join for static files
 
 // Route to serve the main HTML page for the root URL
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html')); // Use path.join for cross-platform compatibility
+  res.sendFile(path.join(process.cwd(), 'public', 'index.html')); // Use path.join for cross-platform compatibility
 });
 
 // Initialize the database with default values if empty
