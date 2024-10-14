@@ -9,7 +9,7 @@ const app = express();
 const port = process.env.PORT || 3000; // Use the Vercel port or default to 3000
 
 // Set up lowdb with JSONFile adapter
-const adapter = new JSONFile('db.json');  // This is where the data will be saved
+const adapter = new JSONFile(path.join(process.cwd(), 'db.json'));   // This is where the data will be saved
 const db = new Low(adapter, {}); // Pass an empty object as the default data
 
 // Middleware
