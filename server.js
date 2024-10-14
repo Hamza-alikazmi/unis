@@ -1,114 +1,107 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { Low } from 'lowdb';
-import { JSONFile } from 'lowdb/node';
-import path from 'path';
-
-
+import mongoose from 'mongoose';
 
 const app = express();
-const port = process.env.PORT || 3000; // Use the Vercel port or default to 3000
-
-// Set up lowdb with JSONFile adapter
-const adapter = new JSONFile('db.json');  // This is where the data will be saved
-const db = new Low(adapter, {}); // Pass an empty object as the default data
+const port = process.env.PORT || 3000;
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-// Initialize the database with default values if empty
-async function initDb() {
-  await db.read();
-  if (!adapter.fileExists) {
-    db.data = { links: [] }; // Initialize with an empty array for links
-    await db.write(); // Write the initial structure to the db.json
-  } else if (!db.data) {
-    db.data = { links: [] }; // Initialize with an empty array for links
-    await db.write(); // Write the initial structure to the db.json
-  } else if (!db.data.links) {
-    db.data.links = []; // Initialize links array if it doesn't exist
-  }
-}
+// MongoDB connection
+const mongoUri = process.env.MONGO_URI || 'mongodb+srv://63kazmiedu:KU2JknuE0ZjJLlNV@cluster0.cqwyc.mongodb.net/';
+mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.error('MongoDB connection error:', err));
+
+// Define the Link schema
+const linkSchema = new mongoose.Schema({
+  name: String,
+  url: String
+});
+
+// Create the Link model
+const Link = mongoose.model('Link', linkSchema);
 
 // Serve static files from the public directory
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 
 // Fallback to index.html for other routes (if needed)
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Route to handle form submission and save the link in db.json
+// Route to handle form submission and save the link in MongoDB
 app.post('/saveLink', async (req, res) => {
   if (!req.body) {
     return res.status(400).json({ error: 'Invalid request body' });
   }
   const { linkName, linkUrl } = req.body;
 
-  await db.read();  // Read the latest data from db.json
-  if (!adapter.fileExists) {
-    db.data = { links: [] }; // Initialize with an empty array for links
-  }
-  if (!db.data) {
-    db.data = { links: [] }; // Initialize with an empty array for links
-  }
-  if (!db.data.links) {
-    db.data.links = []; // Initialize links array if it doesn't exist
-  }
-  db.data.links.push({ name: linkName, url: linkUrl });  // Add the new link to the array
-  await db.write();  // Write the updated data back to db.json
+  try {
+    const newLink = new Link({ name: linkName, url: linkUrl });
+    await newLink.save(); // Save to MongoDB
 
-  res.json({
-    success: true,
-    data: { name: linkName, url: linkUrl }
-  });
+    res.json({
+      success: true,
+      data: { name: linkName, url: linkUrl }
+    });
+  } catch (error) {
+    console.error('Error saving link:', error);
+    res.status(500).json({ success: false, message: 'Failed to save link' });
+  }
 });
 
-// Route to fetch the stored links
+// Route to fetch the stored links from MongoDB
 app.get('/links', async (req, res) => {
-  await db.read();  // Read the latest data from db.json
+  try {
+    const links = await Link.find(); // Fetch all links from MongoDB
 
-  if (db.data && db.data.links && db.data.links.length > 0) {
-    res.json({
-      success: true,
-      data: db.data.links
-    });
-  } else {
-    res.json({
-      success: false,
-      message: 'No links found'
-    });
+    if (links.length > 0) {
+      res.json({
+        success: true,
+        data: links
+      });
+    } else {
+      res.json({
+        success: false,
+        message: 'No links found'
+      });
+    }
+  } catch (error) {
+    console.error('Error fetching links:', error);
+    res.status(500).json({ success: false, message: 'Failed to load links' });
   }
 });
 
-// Route to remove a link by its URL
+// Route to remove a link by its URL from MongoDB
 app.delete('/removeLink', async (req, res) => {
-  const { url } = req.body; // Get the URL from the request body
+  const { url } = req.body;
 
-  await db.read(); // Read the latest data from db.json
+  try {
+    const result = await Link.deleteOne({ url: url });
 
-  if (db.data && db.data.links) {
-    // Filter out the link to be removed
-    db.data.links = db.data.links.filter(link => link.url !== url);
-    await db.write(); // Write the updated data back to db.json
-
-    res.json({
-      success: true,
-      message: 'Link removed successfully'
-    });
-  } else {
-    res.json({
-      success: false,
-      message: 'Link not found'
-    });
+    if (result.deletedCount > 0) {
+      res.json({
+        success: true,
+        message: 'Link removed successfully'
+      });
+    } else {
+      res.json({
+        success: false,
+        message: 'Link not found'
+      });
+    }
+  } catch (error) {
+    console.error('Error removing link:', error);
+    res.status(500).json({ success: false, message: 'Failed to remove link' });
   }
 });
 
 // Start the server
-app.listen(port, async () => {
-  await initDb();  // Initialize the database
+app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
