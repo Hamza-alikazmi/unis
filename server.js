@@ -30,8 +30,13 @@ async function initDb() {
   }
 }
 
-// Serve static files (HTML, CSS, JS)
-app.use(express.static('public'));
+// Serve static files from the public directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Fallback to index.html for other routes (if needed)
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // Route to handle form submission and save the link in db.json
 app.post('/saveLink', async (req, res) => {
