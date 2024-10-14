@@ -309,22 +309,15 @@ let allLinks = [];
 
 // Handle link form submission
 document.addEventListener('DOMContentLoaded', () => {
-  // Load links from local storage when the page loads
-  const storedLinks = localStorage.getItem('allLinks');
-  if (storedLinks) {
-    allLinks = JSON.parse(storedLinks);
-    loadLinks(); // Call loadLinks to display the stored links
-  }
-
   // Handle form submission
   document.getElementById('linkForm').addEventListener('submit', async (event) => {
     event.preventDefault();
-    
+
     const linkName = document.getElementById('linkName').value;
     const linkUrl = document.getElementById('linkUrl').value;
 
     await saveLink(linkName, linkUrl); // Save the link
-    loadLinks(); // Reload links after saving
+    await loadLinks(); // Reload links after saving
   });
 });
 
@@ -431,8 +424,9 @@ function checkEnter(event) {
 
 // Load links on page load
 window.onload = async function() {
-  await loadLinks(); // Load links
+  await loadLinks(); // Load links from server
 };
+
 
 
 </script>
