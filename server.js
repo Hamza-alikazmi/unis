@@ -18,15 +18,19 @@ app.use(cors());
 
 // Initialize the database with default values if empty
 async function initDb() {
-  await db.read();
-  if (!adapter.fileExists) {
-    db.data = { links: [] }; // Initialize with an empty array for links
-    await db.write(); // Write the initial structure to the db.json
-  } else if (!db.data) {
-    db.data = { links: [] }; // Initialize with an empty array for links
-    await db.write(); // Write the initial structure to the db.json
-  } else if (!db.data.links) {
-    db.data.links = []; // Initialize links array if it doesn't exist
+  try {
+    await db.read();
+    if (!adapter.fileExists) {
+      db.data = { links: [] }; // Initialize with an empty array for links
+      await db.write(); // Write the initial structure to the db.json
+    } else if (!db.data) {
+      db.data = { links: [] }; // Initialize with an empty array for links
+      await db.write(); // Write the initial structure to the db.json
+    } else if (!db.data.links) {
+      db.data.links = []; // Initialize links array if it doesn't exist
+    }
+  } catch (error) {
+    console.error('Error initializing database:', error);
   }
 }
 
