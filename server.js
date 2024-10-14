@@ -37,10 +37,12 @@ async function initDb() {
 // Route to handle form submission and save the link in db.json
 app.post('/saveLink', async (req, res) => {
   try {
+    console.log('Request received at /saveLink:', req.body); // Log the request body
     const { linkName, linkUrl } = req.body;
 
     // Validate request
     if (!linkName || !linkUrl) {
+      console.error('Validation failed: Link name and URL are required.');
       return res.status(400).json({ success: false, message: 'Link name and URL are required.' });
     }
 
@@ -55,6 +57,7 @@ app.post('/saveLink', async (req, res) => {
     // Check for duplicate links before adding
     const existingLink = db.data.links.find(link => link.url === linkUrl);
     if (existingLink) {
+      console.error('Duplicate link found:', linkUrl);
       return res.status(409).json({ success: false, message: 'Link already exists.' });
     }
 
@@ -70,7 +73,6 @@ app.post('/saveLink', async (req, res) => {
     res.status(500).json({ success: false, message: 'Internal server error' });
   }
 });
-
 // Route to fetch the stored links
 app.get('/links', async (req, res) => {
   await db.read();  // Read the latest data from db.json
