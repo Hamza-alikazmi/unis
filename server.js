@@ -5,12 +5,7 @@ import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
 
 const app = express();
-
-// Start the server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+const port = process.env.PORT || 3000; // Use the Vercel port or default to 3000
 
 // Set up lowdb with JSONFile adapter
 const adapter = new JSONFile('db.json');  // This is where the data will be saved
@@ -35,13 +30,8 @@ async function initDb() {
   }
 }
 
-// Serve static files from the public directory
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Handle other requests with your API logic
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+// Serve static files (HTML, CSS, JS)
+app.use(express.static('public'));
 
 // Route to handle form submission and save the link in db.json
 app.post('/saveLink', async (req, res) => {
@@ -86,30 +76,6 @@ app.get('/links', async (req, res) => {
   }
 });
 
-// Start the server
-app.listen(port, async () => {
-  await initDb();  // Initialize the database
-  console.log(`Server running at http://localhost:${port}`);
-});
-
-
-// Route to handle removing a link from the database
-app.delete('/removeLink', async (req, res) => {
-  const { url } = req.body; // Extract the URL from the request body
-  await db.read(); // Read the latest data from db.json
-
-  if (db.data && db.data.links) {
-    // Filter out the link to be removed
-    db.data.links = db.data.links.filter(link => link.url !== url);
-    await db.write(); // Write the updated data back to db.json
-    res.json({ success: true, message: 'Link removed successfully' });
-  } else {
-    res.status(400).json({ success: false, message: 'No links found' });
-  }
-});
-
-
-
 // Route to remove a link by its URL
 app.delete('/removeLink', async (req, res) => {
   const { url } = req.body; // Get the URL from the request body
@@ -133,15 +99,8 @@ app.delete('/removeLink', async (req, res) => {
   }
 });
 
-// Route to clear all links
-// router.delete('/clearLinks', (req, res) => {
-//   try {
-//     db.get('links').remove().write(); // Clears the 'links' array in the database
-//     res.status(200).json({ success: true, message: 'All links deleted' });
-//   } catch (error) {
-//     res.status(500).json({ success: false, message: 'Failed to delete links' });
-//   }
-// });
-
-// module.exports = router;
-
+// Start the server
+app.listen(port, async () => {
+  await initDb();  // Initialize the database
+  console.log(`Server running at http://localhost:${port}`);
+});
