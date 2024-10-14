@@ -309,12 +309,8 @@ let allLinks = [];
 
 // Handle link form submission
 document.addEventListener('DOMContentLoaded', () => {
-  // Load links from local storage when the page loads
-  const storedLinks = localStorage.getItem('allLinks');
-  if (storedLinks) {
-    allLinks = JSON.parse(storedLinks);
-    loadLinks(); // Call loadLinks to display the stored links
-  }
+  // Load links from the server when the page loads
+  loadLinks();
 
   // Handle form submission
   document.getElementById('linkForm').addEventListener('submit', async (event) => {
@@ -354,59 +350,52 @@ const saveLink = async (linkName, linkUrl) => {
 async function loadLinks() {
   console.log('loadLinks called');
 
-  try {
-    const response = await fetch('https://unis-green.vercel.app/links'); // Fetch links from the server
-    const data = await response.json();
+  const response = await fetch('https://unis-green.vercel.app/links'); // Update to full URL
+  const data = await response.json();
 
-    console.log('Links response:', data);
+  console.log('Links response:', data);
 
-    if (data.success) {
-      const links = data.data;
-      if (!Array.isArray(links)) {
-        console.error('Error: links is not an array');
-        return;
-      }
-
-      console.log('New links:', links);
-
-      // Remove duplicates from the new links
-      const uniqueLinks = links.filter((link, index, self) => {
-        return self.findIndex((f) => f.url === link.url) === index;
-      });
-
-      // Loop through the new links and add them to allLinks only if they don't exist
-      uniqueLinks.forEach((link) => {
-        if (!allLinks.find((existingLink) => existingLink.url === link.url)) {
-          allLinks.push(link);
-        }
-      });
-
-      console.log('Updated allLinks:', allLinks);
-
-      // Store the links in local storage
-      localStorage.setItem('allLinks', JSON.stringify(allLinks));
-
-      const embeddedContent = document.getElementById('embeddedContent');
-      embeddedContent.innerHTML = ''; // Clear the container
-
-      allLinks.forEach((link) => {
-        const linkElement = `
-          <div class="post">
-            <button class="post">
-              <h2 class="file-name" onclick="toggleContent(this)">${link.name}</h2>
-            </button>
-            <div class="content" style="display: none;">
-              <iframe src="${link.url}" width="100%" height="569" allow="autoplay" frameborder="0" allowfullscreen></iframe>
-            </div>
-          </div>
-        `;
-        embeddedContent.innerHTML += linkElement; // Append new links
-      });
-    } else {
-      console.error(data.message);
+  if (data.success) {
+    const links = data.data;
+    if (!Array.isArray(links)) {
+      console.error('Error: links is not an array');
+      return;
     }
-  } catch (error) {
-    console.error('Failed to load links:', error);
+
+    console.log('New links:', links);
+
+    // Remove duplicates from the new links
+    const uniqueLinks = links.filter((link, index, self) => {
+      return self.findIndex((f) => f.url === link.url) === index;
+    });
+
+    // Loop through the new links and add them to allLinks only if they don't exist
+    uniqueLinks.forEach((link) => {
+      if (!allLinks.find((existingLink) => existingLink.url === link.url)) {
+        allLinks.push(link);
+      }
+    });
+
+    console.log('Updated allLinks:', allLinks);
+
+    const embeddedContent = document.getElementById('embeddedContent');
+    embeddedContent.innerHTML = ''; // Clear the container
+
+    allLinks.forEach((link) => {
+      const linkElement = `
+        <div class="post">
+          <button class="post">
+            <h2 class="file-name" onclick="toggleContent(this)">${link.name}</h2>
+          </button>
+          <div class="content" style="display: none;">
+            <iframe src="${link.url}" width="100%" height="569" allow="autoplay" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+      `;
+      embeddedContent.innerHTML += linkElement; // Append new links
+    });
+  } else {
+    console.error(data.message);
   }
 }
 
