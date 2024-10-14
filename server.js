@@ -5,7 +5,12 @@ import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
 
 const app = express();
-const port = 3000;
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
 
 // Set up lowdb with JSONFile adapter
 const adapter = new JSONFile('db.json');  // This is where the data will be saved
