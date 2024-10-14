@@ -377,9 +377,6 @@ async function loadLinks() {
 
     console.log('Updated allLinks:', allLinks);
 
-    // Store the links in local storage
-    localStorage.setItem('allLinks', JSON.stringify(allLinks));
-
     // Populate the embedded content
     allLinks.forEach(link => {
       const linkElement = `
