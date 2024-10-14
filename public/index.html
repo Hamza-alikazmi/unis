@@ -309,6 +309,9 @@ let allLinks = [];
 
 // Handle link form submission
 document.addEventListener('DOMContentLoaded', () => {
+  // Load links from the server when the page loads
+  loadLinks();
+
   // Handle form submission
   document.getElementById('linkForm').addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -361,14 +364,14 @@ async function loadLinks() {
 
     console.log('New links:', links);
 
-    // Remove duplicates from the new links
-    const uniqueLinks = links.filter((link, index, self) => {
-      return self.findIndex((f) => f.url === link.url) === index;
-    });
+    // Clear the container before loading new links
+    const embeddedContent = document.getElementById('embeddedContent');
+    embeddedContent.innerHTML = ''; 
 
-    // Loop through the new links and add them to allLinks only if they don't exist
-    uniqueLinks.forEach((link) => {
-      if (!allLinks.find((existingLink) => existingLink.url === link.url)) {
+    // Remove duplicates and populate allLinks
+    allLinks = []; // Reset allLinks to avoid duplicates
+    links.forEach(link => {
+      if (!allLinks.find(existingLink => existingLink.url === link.url)) {
         allLinks.push(link);
       }
     });
@@ -378,10 +381,8 @@ async function loadLinks() {
     // Store the links in local storage
     localStorage.setItem('allLinks', JSON.stringify(allLinks));
 
-    const embeddedContent = document.getElementById('embeddedContent');
-    embeddedContent.innerHTML = ''; // Clear the container
-
-    allLinks.forEach((link) => {
+    // Populate the embedded content
+    allLinks.forEach(link => {
       const linkElement = `
         <div class="post">
           <button class="post">
@@ -424,9 +425,8 @@ function checkEnter(event) {
 
 // Load links on page load
 window.onload = async function() {
-  await loadLinks(); // Load links from server
+  await loadLinks(); // Load links from the server
 };
-
 
 
 </script>
