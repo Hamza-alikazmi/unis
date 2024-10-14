@@ -1,15 +1,15 @@
 {
   "name": "your-project-name",
   "version": "1.0.0",
-  "type": "module",  
+  "type": "module",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
- "dependencies": {
+  "dependencies": {
     "express": "4.21.1",
-    "lowdb": "7.0.1",
     "body-parser": "^1.20.1",
-    "cors": "2.8.5"
-}
+    "cors": "2.8.5",
+    "mongodb": "^4.12.1"  // Add this line for MongoDB
+  }
 }
