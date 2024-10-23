@@ -154,8 +154,12 @@
     border-radius: 5%;
     color: white;
     transition: transform 0.3s ease;
+    text-decoration:none;
   }
   
+  a{
+    text-decoration: none;
+  }
   #note {
     color: #dc3545;
     font-weight: bolder;
@@ -383,10 +387,10 @@ async function loadLinks() {
 
     allLinks.forEach((link) => {
       const linkElement = `
-  <div class="post">
-  <h2 class="file-name">${link.name}</h2>
+  <div class="post"><a href="${link.url}" target="_blank"><h2 class="post">${link.name}</h2></a>
+  <!-- <h2 class="file-name">${link.name}</h2> -->
   <div class="content">
-    <a href="${link.url}" target="_blank">View Content</a>
+    
   </div>
 </div>
 
