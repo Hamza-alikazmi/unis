@@ -259,7 +259,7 @@
         <!-- Search form and social icons -->
         <div class="d-flex align-items-center">
           <form class="d-flex me-3" role="search" onsubmit="return false;">
-            <input class="form-control me-2" type="search" id="search-bar" placeholder="Search" aria-label="Search" onkeypress="checkEnter(event)">
+            <input type="text" id="search" placeholder="Search posts...">
             <button class="btn btn-outline-success" type="button" id="search-button" onclick="searchPosts();">Search</button>
           </form>
           <!-- Social media icons container with flex layout -->
@@ -288,7 +288,7 @@
   
   
 
-  <div class="flex-container">
+<!--   <div class="flex-container">
     <div id="submission-form">
       <div class="container mt-4">
         <h2>Upload Your Content Here</h2>
@@ -302,7 +302,7 @@
           <button type="submit" class="btn btn-primary">Submit Link</button>
         </form>
       </div>
-    </div>
+    </div> -->
     <!-- <button onclick="clearAllLinks()">Clear All Links</button> -->
 
     <div id="embeddedContent"></div>
@@ -409,22 +409,24 @@ function toggleContent(element) {
 }
 
 // Function to search posts
-function searchPosts() {
-  let input = document.getElementById('search-bar').value.toLowerCase();
-  let posts = document.getElementsByClassName('post');
-
-  for (let i = 0; i < posts.length; i++) {
-    let fileName = posts[i].getElementsByClassName('file-name')[0].innerText.toLowerCase();
-    posts[i].style.display = fileName.includes(input) ? "" : "none"; // Show or hide the post
-  }
-}
-
-function checkEnter(event) {
-  if (event.key === "Enter") {
-    searchPosts();
-  }
-}
-
+$(document).ready(function() {
+  // Event listener for the search input
+  $('#search').on('keyup', function() {
+    var searchTerm = $(this).val().toLowerCase(); // Get the search term and convert to lowercase
+    
+    // Loop through each post
+    $('.post').each(function() {
+      var postTitle = $(this).find('.file-name').text().toLowerCase(); // Get the title text of each post and convert to lowercase
+      
+      // Check if the post title contains the search term
+      if (postTitle.indexOf(searchTerm) !== -1) {
+        $(this).show(); // Show the post if it matches the search term
+      } else {
+        $(this).hide(); // Hide the post if it doesn't match
+      }
+    });
+  });
+});
 // Load links on page load
 window.onload = async function() {
   await loadLinks(); // Load links
