@@ -46,6 +46,50 @@ body:hover {
     transform: scale(1.1) rotate(-2deg); /* Zoom and rotate effect */
 }
 
+
+/* Basic styling */
+#navbarNavDropdown {
+    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient background */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: all 0.4s ease-in-out; /* Smooth transition */
+}
+
+/* Smooth dropdown animation */
+#navbarNavDropdown.collapse.show {
+    max-height: 500px;
+    opacity: 1;
+    transform: scale(1);
+}
+
+#navbarNavDropdown.collapse {
+    max-height: 0;
+    opacity: 0;
+    transform: scale(0.95);
+    overflow: hidden;
+}
+
+/* Navbar links */
+#navbarNavDropdown a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+#navbarNavDropdown a:hover {
+    background: rgba(255, 255, 255, 0.2); /* Hover effect */
+}
+
+/* Media query for responsive design */
+@media (max-width: 768px) {
+    #navbarNavDropdown {
+        text-align: center;
+    }
+}
 /* Navbar links transition */
 .nav-link {
     transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
