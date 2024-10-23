@@ -351,6 +351,7 @@ const saveLink = async (linkName, linkUrl) => {
 };
 
 // Function to load and display embedded links
+// Function to load and display embedded links
 async function loadLinks() {
   console.log('loadLinks called');
 
@@ -387,13 +388,11 @@ async function loadLinks() {
 
     allLinks.forEach((link) => {
       const linkElement = `
-  <div class="post"><a href="${link.url}" target="_blank"><h2 class="post">${link.name}</h2></a>
-  <!-- <h2 class="file-name">${link.name}</h2> -->
-  <div class="content">
-    
-  </div>
-</div>
-
+        <div class="post">
+          <a href="${link.url}" target="_blank">
+            <h2 class="post-title">${link.name}</h2>
+          </a>
+        </div>
       `;
       embeddedContent.innerHTML += linkElement; // Append new links
     });
@@ -402,12 +401,7 @@ async function loadLinks() {
   }
 }
 
-// Function to open the link in the iframe
-function toggleContent(element) {
-  let contentDiv = element.parentNode.nextElementSibling; // Get the next sibling (the content div)
-  contentDiv.style.display = (contentDiv.style.display === "none" || contentDiv.style.display === "") ? "block" : "none"; // Toggle display
-}
-
+// Remove the toggleContent function since it's no longer needed
 // Function to search posts
 $(document).ready(function() {
   // Event listener for the search input
@@ -416,7 +410,7 @@ $(document).ready(function() {
     
     // Loop through each post
     $('.post').each(function() {
-      var postTitle = $(this).find('.file-name').text().toLowerCase(); // Get the title text of each post and convert to lowercase
+      var postTitle = $(this).find('.post-title').text().toLowerCase(); // Get the title text of each post and convert to lowercase
       
       // Check if the post title contains the search term
       if (postTitle.indexOf(searchTerm) !== -1) {
@@ -427,10 +421,12 @@ $(document).ready(function() {
     });
   });
 });
+
 // Load links on page load
 window.onload = async function() {
   await loadLinks(); // Load links
 };
+
 
 </script>
 </body>
