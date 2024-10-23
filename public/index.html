@@ -31,38 +31,91 @@ body:hover {
     color: #17252a;
     background-color: #3aafa9; /* Teal background on hover */
 }
-
-/* Navbar brand hover transition */
-.navbar-brand {
-    transition: color 0.3s ease, transform 0.3s ease-in-out;
-    margin: 1%;
-    font-size: 1.8em;
-    font-weight: bold;
-    letter-spacing: 1px;
+/* Navbar Toggler Button Styling */
+.fancy-toggler {
+    border: none;
+    background-color: transparent;
+    position: relative;
+    z-index: 10;
+    padding: 8px;
+    transition: transform 0.3s ease-in-out;
 }
 
-.navbar-brand:hover {
-    color: #47ffff; /* Light Blue on hover */
-    transform: scale(1.1) rotate(-2deg); /* Zoom and rotate effect */
+.fancy-toggler:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
 }
 
+/* Custom Icon (Replacing the Default Bootstrap Icon) */
+.fancy-toggler .navbar-toggler-icon {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: #fff; /* Initial color */
+    border-radius: 2px;
+    position: relative;
+    transition: background-color 0.3s ease-in-out;
+}
 
-/* Basic styling */
+/* Middle Line Animation */
+.fancy-toggler .navbar-toggler-icon::before,
+.fancy-toggler .navbar-toggler-icon::after {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
+    border-radius: 2px;
+    position: absolute;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Positioning the Before/After Lines */
+.fancy-toggler .navbar-toggler-icon::before {
+    top: -8px;
+}
+
+.fancy-toggler .navbar-toggler-icon::after {
+    top: 8px;
+}
+
+/* Change Icon to 'X' on Expand */
+.collapse.show + .fancy-toggler .navbar-toggler-icon {
+    background-color: transparent; /* Hide middle line */
+}
+
+.collapse.show + .fancy-toggler .navbar-toggler-icon::before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.collapse.show + .fancy-toggler .navbar-toggler-icon::after {
+    transform: rotate(-45deg);
+    top: 0;
+}
+
+/* Navbar Background when Open */
 #navbarNavDropdown {
-    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient background */
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    transition: all 0.4s ease-in-out; /* Smooth transition */
+    background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Vibrant gradient */
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s ease-in-out;
 }
 
-/* Smooth dropdown animation */
-#navbarNavDropdown.collapse.show {
-    max-height: 500px;
-    opacity: 1;
-    transform: scale(1);
+/* Navbar Links */
+#navbarNavDropdown a {
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    margin: 10px 0;
+    text-decoration: none;
+    transition: transform 0.2s;
 }
 
+#navbarNavDropdown a:hover {
+    transform: scale(1.1);
+    color: #000;
+}
 #navbarNavDropdown.collapse {
     color:black;
     background-color:white
