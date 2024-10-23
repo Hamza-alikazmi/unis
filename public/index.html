@@ -383,12 +383,13 @@ async function loadLinks() {
 
     allLinks.forEach((link) => {
       const linkElement = `
-        <div class="post">
-          <button class="post">
-            <h2 class="file-name" onclick="toggleContent(this)">${link.name}</h2>
-          </button>
-          <a href="${link.url}" target="_blank">View Content</a>
-        </div>
+  <div class="post">
+  <h2 class="file-name">${link.name}</h2>
+  <div class="content">
+    <a href="${link.url}" target="_blank">View Content</a>
+  </div>
+</div>
+
       `;
       embeddedContent.innerHTML += linkElement; // Append new links
     });
