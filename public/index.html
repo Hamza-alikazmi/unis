@@ -387,9 +387,7 @@ async function loadLinks() {
           <button class="post">
             <h2 class="file-name" onclick="toggleContent(this)">${link.name}</h2>
           </button>
-          <div class="content" style="display: none;">
-            <iframe src="${link.url}" width="100%" height="569" allow="autoplay" frameborder="0" allowfullscreen></iframe>
-          </div>
+          <a href="${link.url}" target="_blank">View Content</a>
         </div>
       `;
       embeddedContent.innerHTML += linkElement; // Append new links
