@@ -5,14 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Unis</title>
 
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-
-
-
-
-  <!-- Bootstrap CSS (optional for utility) -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -28,66 +24,6 @@
     body:hover {
         color: #17252a;
         background-color: #3aafa9; /* Teal background on hover */
-    }
-
-    /* Navbar Toggler Button Styling */
-    .fancy-toggler {
-        border: none;
-        background-color: transparent;
-        position: relative;
-        z-index: 10;
-        padding: 8px;
-        transition: transform 0.3s ease-in-out;
-    }
-
-    .fancy-toggler:hover {
-        transform: scale(1.1); /* Slight zoom on hover */
-    }
-
-    /* Custom Icon (Replacing Bootstrap Icon) */
-    .fancy-toggler .navbar-toggler-icon {
-        display: block;
-        width: 30px;
-        height: 3px;
-        background-color: #fff;
-        border-radius: 2px;
-        position: relative;
-        transition: background-color 0.3s ease-in-out;
-    }
-
-    .fancy-toggler .navbar-toggler-icon::before,
-    .fancy-toggler .navbar-toggler-icon::after {
-        content: "";
-        display: block;
-        width: 30px;
-        height: 3px;
-        background-color: #fff;
-        border-radius: 2px;
-        position: absolute;
-        transition: all 0.3s ease-in-out;
-    }
-
-    .fancy-toggler .navbar-toggler-icon::before {
-        top: -8px;
-    }
-
-    .fancy-toggler .navbar-toggler-icon::after {
-        top: 8px;
-    }
-
-    /* Icon transforms to 'X' on open */
-    .collapse.show + .fancy-toggler .navbar-toggler-icon {
-        background-color: transparent;
-    }
-
-    .collapse.show + .fancy-toggler .navbar-toggler-icon::before {
-        transform: rotate(45deg);
-        top: 0;
-    }
-
-    .collapse.show + .fancy-toggler .navbar-toggler-icon::after {
-        transform: rotate(-45deg);
-        top: 0;
     }
 
     /* Navbar Background when Open */
@@ -124,217 +60,212 @@
         }
     }
 
-    /* Search Button Styling */
-    #search-button {
-        background-color: #6c757d;
+    /* Social media icons */
+    .navbar-nav.d-flex.flex-row {
+        flex-direction: row; /* Keep icons in a row */
+        font-size: 2em; /* Adjust icon size */
+        margin: 0 5px;
+        transition: color 0.3s ease, transform 0.3s ease;
+        align-items: center; /* Align icons vertically */
+        justify-content: flex-end; /* Align icons to the right */
+        flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    }
+
+    .whatsapp-icon:hover {
+        color: #25d366; /* WhatsApp green */
+        background-color: rgba(37, 211, 102, 0.2); /* Subtle background on hover */
+        transform: scale(1.2);
+    }
+
+    .fa-facebook-f:hover {
+        color: #1c91ff; /* Facebook blue */
+        background-color: rgba(28, 145, 255, 0.2); /* Subtle background on hover */
+        transform: scale(1.2);
+    }
+
+    .fa-instagram:hover {
+        color: #e4405f; /* Instagram pink-red */
+        background-color: rgba(228, 64, 95, 0.2); /* Subtle background on hover */
+        transform: scale(1.2);
+    }
+
+    /* Fancy remove button */
+    .remove {
+        background-color: #dc3545; /* Bootstrap red */
         color: white;
-        border-radius: 25px;
-        transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, transform 0.3s;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 1rem;
+        border-radius: 50px;
+        margin-left: auto; /* Use auto margin for proper positioning */
+        transition: background-color 0.3s ease-in-out, transform 0.3s ease;
     }
 
-    #search-button:hover {
-        background-color: #28a745;
-        border-color: #28a745;
-        transform: scale(1.05);
+    .remove:hover {
+        background-color: #c82333; /* Darker red */
+        transform: scale(1.1); /* Slight zoom on hover */
     }
 
-    /* Toggler Icon Rotation */
-    .navbar-toggler:hover {
-        transform: rotate(90deg);
-    }
-  </style>
-
-
-
-
-
-
-
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-  <!-- Bootstrap CSS -->
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-<!-- Font Awesome for Icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-<!-- Bootstrap JS (requires jQuery) -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
-<style>
-  
-/* Social media icons */
-.navbar-nav.d-flex.flex-row {
-    flex-direction: row; /* Keep icons in a row */
-    font-size: 2em; /* Adjust icon size */
-    margin: 0 5px;
-    transition: color 0.3s ease, transform 0.3s ease;
-    align-items: center; /* Align icons vertically */
-    justify-content: flex-end; /* Align icons to the right */
-    flex-wrap: wrap; /* Allow wrapping for smaller screens */
-}
-
-.whatsapp-icon:hover {
-    color: #25d366; /* WhatsApp green */
-    background-color: rgba(37, 211, 102, 0.2); /* Subtle background on hover */
-    transform: scale(1.2);
-}
-
-.fa-facebook-f:hover {
-    color: #1c91ff; /* Facebook blue */
-    background-color: rgba(28, 145, 255, 0.2); /* Subtle background on hover */
-    transform: scale(1.2);
-}
-
-.fa-instagram:hover {
-    color: #e4405f; /* Instagram pink-red */
-    background-color: rgba(228, 64, 95, 0.2); /* Subtle background on hover */
-    transform: scale(1.2);
-}
-
-/* Fancy remove button */
-.remove {
-    background-color: #dc3545; /* Bootstrap red */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 1rem;
-    border-radius: 50px;
-    margin-left: auto; /* Use auto margin for proper positioning */
-    transition: background-color 0.3s ease-in-out, transform 0.3s ease;
-}
-
-.remove:hover {
-    background-color: #c82333; /* Darker red */
-    transform: scale(1.1); /* Slight zoom on hover */
-}
-
-/* Gradient animation for post backgrounds */
-@keyframes gradientAnimation {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-/* Content area styling */
-#embeddedContent {
-    flex: 1;
-    overflow-y: auto;
-    padding: 20px;
-}
-
-.post {
-    background: linear-gradient(270deg, rgba(34, 34, 34, 1), rgb(57, 14, 114)); /* Dark gradient */
-    background-size: 400% 400%;
-    animation: gradientAnimation 5s ease infinite; /* Animation for the gradient */
-    background-origin: padding-box;
-    border: 4px solid black;
-    width: 98%;
-    margin: 1px;
-    padding: 8px;
-    border-radius: 5%;
-    color: white;
-    transition: transform 0.3s ease;
-    text-decoration: none;
-}
-
-a {
-    text-decoration: none;
-}
-
-#note {
-    color: #dc3545;
-    font-weight: bolder;
-}
-
-#not {
-    color: #dc3545;
-    text-decoration: line-through;
-    flex: 1;
-    font-weight: bolder;
-}
-
-.post:hover {
-    background: radial-gradient(270deg, rgb(138, 135, 135), rgb(248, 245, 255));
-    transform: scale(1.02); /* Slightly scale the post on hover */
-}
-
-/* Flex container for submission form and embedded content */
-.flex-container {
-    display: flex;
-    flex-direction: row;
-    height: 100vh; /* Take full height of the viewport */
-}
-
-/* Submission form styling */
-#submission-form {
-    width: 30%; /* Occupy 30% of the screen on desktop view */
-    background-color: #8dc6ff; /* Light background color */
-    padding: 20px;
-    border-right: 1px solid #ccc; /* Divider between sections */
-}
-
-/* Embedded content styling */
-#embeddedContent {
-    flex: 1; /* Take the remaining space on the screen */
-    overflow-y: auto; /* Enable scrolling */
-    padding: 20px;
-}
-
-/* Media queries for small devices */
-@media (max-width: 768px) {
-    #submission-form {
-        width: 100%; /* Full width for smaller devices */
-        padding: 10px;
-        border-right: none;
+    /* Gradient animation for post backgrounds */
+    @keyframes gradientAnimation {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
     }
 
-    .flex-container {
-        flex-direction: column; /* Stack submission form and embedded content vertically */
-        height: auto; /* Let the height adjust naturally */
+    /* Content area styling */
+    #embeddedContent {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px;
     }
 
     .post {
+        background: linear-gradient(270deg, rgba(34, 34, 34, 1), rgb(57, 14, 114)); /* Dark gradient */
+        background-size: 400% 400%;
+        animation: gradientAnimation 5s ease infinite; /* Animation for the gradient */
+        background-origin: padding-box;
+        border: 4px solid black;
+        width: 98%;
+        margin: 1px;
+        padding: 8px;
+        border-radius: 5%;
+        color: white;
+        transition: transform 0.3s ease;
+        text-decoration: none;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    #note {
+        color: #dc3545;
+        font-weight: bolder;
+    }
+
+    #not {
+        color: #dc3545;
+        text-decoration: line-through;
+        flex: 1;
+        font-weight: bolder;
+    }
+
+    .post:hover {
+        background: radial-gradient(270deg, rgb(138, 135, 135), rgb(248, 245, 255));
+        transform: scale(1.02); /* Slightly scale the post on hover */
+    }
+
+    /* Flex container for submission form and embedded content */
+    .flex-container {
+        display: flex;
+        flex-direction: row;
+        height: 100vh; /* Take full height of the viewport */
+    }
+
+    /* Submission form styling */
+    #submission-form {
+        width: 30%; /* Occupy 30% of the screen on desktop view */
+        background-color: #8dc6ff; /* Light background color */
+        padding: 20px;
+        border-right: 1px solid #ccc; /* Divider between sections */
+    }
+
+    /* Embedded content styling */
+    #embeddedContent {
+        flex: 1; /* Take the remaining space on the screen */
+        overflow-y: auto; /* Enable scrolling */
+        padding: 20px;
+    }
+
+    /* Media queries for small devices */
+    @media (max-width: 768px) {
+        #submission-form {
+            width: 100%; /* Full width for smaller devices */
+            padding: 10px;
+            border-right: none;
+        }
+
+        .flex-container {
+            flex-direction: column; /* Stack submission form and embedded content vertically */
+            height: auto; /* Let the height adjust naturally */
+        }
+
+        .post {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+        }
+
+        .remove {
+            margin-left: 0;
+            width: 100%; /* Full width button for easier interaction on mobile */
+            font-size: 0.9rem;
+        }
+
+        /* Social media icons alignment for mobile */
+        .navbar-nav.d-flex.flex-row {
+            margin: auto;
+            flex-direction: column; /* Stack the icons vertically */
+            font-size: 2em; /* Adjust icon size if necessary */
+        }
+
+        .whatsapp-icon, .fa-facebook-f, .fa-instagram {
+            margin-bottom: 10px; /* Add space between icons */
+            font-size: 2em; /* Adjust icon size if necessary */
+        }
+    }
+
+    /* Overflow Control for WhatsApp Icon */
+    .whatsapp-icon {
+        white-space: nowrap; /* Prevent text wrapping */
+        overflow: hidden; /* Hide overflow */
+        text-overflow: ellipsis; /* Add ellipsis for overflow text */
+    }
+
+    .navbar-toggler {
+        border: none; /* Remove default border */
+        background-color: transparent; /* Make background transparent */
+        outline: none; /* Remove outline */
+        color: #1c91ff;
+    }
+
+    .navbar-toggler-icon {
+        display: inline-block;
+        width: 30px; /* Adjust width as needed */
+        height: 5px; /* Adjust height for bars */
+        background-color: #1c91ff; /* Color of the bars */
+        transition: background-color 0.3s ease; /* Smooth transition for color change */
+    }
+
+    .navbar-toggler.collapsed .navbar-toggler-icon {
+        background-color: #1c91ff; /* Color when toggler is collapsed */
+    }
+
+    .navbar-toggler-icon::before,
+    .navbar-toggler-icon::after {
+        content: " ";
+        display: block;
         width: 100%;
-        margin: 10px 0;
-        padding: 10px;
+        height: 100%;
+        background-color: inherit; /* Inherit color from main icon */
+        transition: transform 0.3s ease; /* Smooth transition for rotation */
     }
 
-    .remove {
-        margin-left: 0;
-        width: 100%; /* Full width button for easier interaction on mobile */
-        font-size: 0.9rem;
+    .navbar-toggler.collapsed .navbar-toggler-icon::before {
+        transform: translateY(-8px); /* Move up bar before */
     }
 
-    /* Social media icons alignment for mobile */
-    .navbar-nav.d-flex.flex-row {
-        flex-direction: column; /* Stack the icons vertically */
-        font-size: 2em; /* Adjust icon size if necessary */
+    .navbar-toggler.collapsed .navbar-toggler-icon::after {
+        transform: translateY(8px); /* Move down bar after */
     }
-
-    .whatsapp-icon, .fa-facebook-f, .fa-instagram {
-        margin-bottom: 10px; /* Add space between icons */
-        font-size: 2em; /* Adjust icon size if necessary */
-    }
-}
-
-/* Overflow Control for WhatsApp Icon */
-.whatsapp-icon {
-    white-space: nowrap; /* Prevent text wrapping */
-    overflow: hidden; /* Hide overflow */
-    text-overflow: ellipsis; /* Add ellipsis for overflow text */
-}
-
 </style>
   <!-- Ensure closing of head tag -->
 </head>
