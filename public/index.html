@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* Body Styling */
+    
     body {
         background-color: #362c2c; /* Dark Gray */
         color: white;
@@ -294,45 +294,42 @@
           <li class="nav-item">
             <a class="nav-link" href="https://skillspectrumpk.vercel.app/">SKILL SPECTRUM</a>
           </li>
+          <!-- Dropdown for Social Links -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="socialLinksDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Social Links
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="socialLinksDropdown">
+              <li>
+                <a class="dropdown-item" href="https://chat.whatsapp.com/GGByduLdV3uEhvzAdUFG9Q" target="_blank" title="Chat on WhatsApp">
+                  <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://www.facebook.com/share/g/XELu7wpG2gB2Muh1/" target="_blank" title="Visit Facebook">
+                  <i class="fab fa-facebook-f"></i> Facebook
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://ig.me/j/AbaAE8jX2hFVC6lM/" target="_blank" title="Visit Instagram">
+                  <i class="fab fa-instagram"></i> Instagram
+                </a>
+              </li>
+            </ul>
+          </li>
         </ul>
-        <div style="display: block">
-          <div class="dropdown">
-              <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Social Links
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="our-links nav-link whatsapp-icon" href="https://chat.whatsapp.com/GGByduLdV3uEhvzAdUFG9Q" target="_blank" title="Chat on WhatsApp">
-                      <i class="fab fa-whatsapp"></i> WhatsApp
-                  </a>
-                  <a class="our-links nav-link" href="https://www.facebook.com/share/g/XELu7wpG2gB2Muh1/" target="_blank" title="Visit Facebook">
-                      <i class="fab fa-facebook-f"></i> Facebook
-                  </a>
-                  <a class="our-links nav-link" href="https://ig.me/j/AbaAE8jX2hFVC6lM/" target="_blank" title="Visit Instagram">
-                      <i class="fab fa-instagram"></i> Instagram
-                  </a>
-              </div>
-          </div>
-      </div>
-      
   
-        <!-- Search form and social icons -->
+        <!-- Search form -->
         <div class="d-flex flex-column align-items-center">
-          <!-- Search Bar -->
           <form class="d-flex mb-3 w-100 justify-content-center" role="search" onsubmit="return false;">
             <input type="text" id="search" class="form-control me-2" placeholder="Search posts..." style="max-width: 300px;">
             <button class="btn btn-outline-success" type="button" id="search-button" onclick="searchPosts();">Search</button>
           </form>
-          
-          
-        <!-- Social media icons container with flex layout -->
-        
-       
-        
         </div>
       </div>
     </div>
   </nav>
-
+  
   <!-- Container for submission form and links -->
   <div class="container mt-4">
     <!-- <h2>Upload Your Content Here</h2>
