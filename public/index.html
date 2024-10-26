@@ -20,7 +20,6 @@
         font-family: 'Poppins', Arial, sans-serif;
         transition: background-color 2s ease-in-out, color 0.5s ease;
     }
-
     body:hover {
         color: #17252a;
         background-color: #3aafa9; /* Teal background on hover */
@@ -34,7 +33,9 @@
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         transition: all 0.5s ease-in-out;
     }
-
+    .container-fluid{
+        max-width: 70%;
+    }
     /* Navbar Links */
     #navbarNavDropdown a {
         color: black;
@@ -48,18 +49,36 @@
         transition: transform 0.2s, background 0.3s;
     }
 
+    
     #navbarNavDropdown a:hover {
         transform: scale(1.1);
         background: rgba(255, 255, 255, 0.2);
     }
-
+    .emb {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Two columns */
+        gap: 20px; /* Space between posts */
+        max-width: 100%;
+    }
+    
+    .post {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-gap: 10px;
+        max-width: 100%;
+        overflow-x: auto;
+        word-wrap: break-word;
+    }
     /* Navbar Links on Small Screens */
     @media (max-width: 768px) {
         #navbarNavDropdown {
             text-align: center;
         }
     }
-
+    .container-fluid{
+        max-width: auto;
+    }
     /* Social media icons */
     .navbar-nav.d-flex.flex-row {
         flex-direction: row; /* Keep icons in a row */
@@ -120,12 +139,18 @@
         }
     }
 
-    /* Content area styling */
+ /* Content area styling */
     #embeddedContent {
-        flex: 1;
+    position: relative;
         overflow-y: auto;
         padding: 20px;
-    }
+        overflow-y: auto; /* Enable scrolling */
+        padding: 20px;
+        background-color:#ff7e5f;
+        border:4px solid snow;
+        border-radius: 10px;
+        margin: auto;
+    } 
 
     .post {
         background: linear-gradient(270deg, rgba(34, 34, 34, 1), rgb(57, 14, 114)); /* Dark gradient */
@@ -133,8 +158,8 @@
         animation: gradientAnimation 5s ease infinite; /* Animation for the gradient */
         background-origin: padding-box;
         border: 4px solid black;
-        width: 98%;
-        margin: 1px;
+        width: 90%;
+        margin: auto;
         padding: 8px;
         border-radius: 5%;
         color: white;
@@ -144,6 +169,7 @@
 
     a {
         text-decoration: none;
+        color: #ccc;
     }
 
     #note {
@@ -178,12 +204,6 @@
         border-right: 1px solid #ccc; /* Divider between sections */
     }
 
-    /* Embedded content styling */
-    #embeddedContent {
-        flex: 1; /* Take the remaining space on the screen */
-        overflow-y: auto; /* Enable scrolling */
-        padding: 20px;
-    }
 
     /* Media queries for small devices */
     @media (max-width: 768px) {
@@ -318,17 +338,17 @@
             </ul>
           </li>
         </ul>
-  
+    </div>
+</div>
+
         <!-- Search form -->
         <div class="d-flex flex-column align-items-center">
           <form class="d-flex mb-3 w-100 justify-content-center" role="search" onsubmit="return false;">
-            <input type="text" id="search" class="form-control me-2" placeholder="Search posts..." style="max-width: 300px;">
+            <input type="text" id="search" class="form-control me-2" placeholder="Search Books or notes..." style="max-width: 300px;">
             <button class="btn btn-outline-success" type="button" id="search-button" onclick="searchPosts();">Search</button>
           </form>
         </div>
-      </div>
-    </div>
-  </nav>
+    </nav>
   
   <!-- Container for submission form and links -->
   <div class="container mt-4">
