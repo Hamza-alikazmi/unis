@@ -1,127 +1,163 @@
-{[
-{ 
- "name": "BS IT Fall All PAST PAPER 2023 ",
+{
+  "resources": [
+    {
+      "name": "BS IT Fall All PAST PAPER 2023",
       "url": "https://drive.google.com/file/d/1n8fZT86aQm1tsgNKxbfiQ_Ol3JvlXaz7/preview"
-    }, { 
- "name": "BS IT FALL 2022 All PAST PAPER ",
+    },
+    {
+      "name": "BS IT FALL 2022 All PAST PAPER",
       "url": "https://drive.google.com/file/d/1FtsJJ47wsHouD2rLlZWcTCLCUshQ_GwQ/preview"
     },
-     { 
- "name": "Slides of ICT Book (Deborah MorleyCharles S. Parker)",
+    {
+      "name": "Slides of ICT Book (Deborah Morley, Charles S. Parker)",
       "url": "https://drive.google.com/file/d/1lXlJR8gBB2AT0QJ5i-ZHnd89YLVguKEM/preview"
-    }, { 
- "name": "Statistics  Sher Muhammad Chaudhry  PART 2.pdf",
+    },
+    {
+      "name": "Statistics Sher Muhammad Chaudhry PART 2.pdf",
       "url": "https://drive.google.com/file/d/1FtsJJ47wsHouD2rLlZWcTCLCUshQ_GwQ/preview"
-    }, { 
- "name": "Introduction to Psychology",
+    },
+    {
+      "name": "Introduction to Psychology",
       "url": "https://drive.google.com/file/d/1Hkj-31dSxsVa9MD9Z3PZnZCV8AfvNuPl/preview"
-    }, { 
- "name": "Functional English GE-101",
+    },
+    {
+      "name": "Functional English GE-101",
       "url": "https://drive.google.com/file/d/1llzmdH1t4El20TVb8AcMrcu8owwtemAT/preview"
-    }, { 
- "name": "Electricity And Magnetism book(Applied Physics)",
+    },
+    {
+      "name": "Electricity And Magnetism book (Applied Physics)",
       "url": "https://drive.google.com/file/d/1IJxJKDoo_IGr3wRUB8UhVCjDztQHN9y7/preview"
-    }, { 
- "name": "Dia ul islam",
+    },
+    {
+      "name": "Dia ul islam",
       "url": "https://drive.google.com/file/d/13aCBSlhlutWoizUSIOvDBELHb3i1UK3k/preview"
-    },{
+    },
+    {
       "name": "Complete DM Discrete Maths in one shot | Semester Exam | Hindi",
       "url": "https://www.youtube.com/embed/3zOtLEeHygg?autoplay=0"
-    }, { 
- "name": "Applied Physics  MS-151 (For PU Students)",
+    },
+    {
+      "name": "Applied Physics MS-151 (For PU Students)",
       "url": "https://drive.google.com/file/d/1bbfcydms3FaaJho76UutqbBmZhxTaC8n/preview"
-    }, { 
- "name": "[SOL]Discrete Mathematics and Its Applications ",
+    },
+    {
+      "name": "[SOL] Discrete Mathematics and Its Applications",
       "url": "https://drive.google.com/file/d/1qmaNm7rz8kFBuo3gpzHw9-h_b7CLiHkh/preview"
-    }, { 
- "name": "Jay L. Devore - Probability and Statistics for Engineering and the Sciences",
+    },
+    {
+      "name": "Jay L. Devore - Probability and Statistics for Engineering and the Sciences",
       "url": "https://drive.google.com/file/d/1Mrm1c2uBGE1SalnNKpRgmjKzevukTFvT/preview"
-    }, { 
- "name": "Probability Statistics for Engineers Scientists (9th Edition) Walpole",
+    },
+    {
+      "name": "Probability Statistics for Engineers Scientists (9th Edition) Walpole",
       "url": "https://drive.google.com/file/d/1I7Zfc1awPXUzXxMArQTMdCm_c9XiDW4q/preview"
-    }, { 
- "name": "[IT Series] Object Oriented Programming (OOP)",
+    },
+    {
+      "name": "[IT Series] Object Oriented Programming (OOP)",
       "url": "https://drive.google.com/file/d/1JHrExm8Yvf0t1NAxzjW8y-vTP65RcOKC/preview"
-    },{
-  "name": "BS CS Outlines (National University of Pakistan)",
+    },
+    {
+      "name": "BS CS Outlines (National University of Pakistan)",
       "url": "https://drive.google.com/file/d/1tVkDY3jvrXEJ-aenc_v2iCM_T2RZbPT1/preview"
-    },{ 
- "name": "[Abdul Bari] Learn C++ Programming -Beginner With OPP- Deep Dive in C++",
+    },
+    {
+      "name": "[Abdul Bari] Learn C++ Programming - Beginner With OOP - Deep Dive in C++",
       "url": "https://drive.google.com/drive/folders/1yiKwkrHrbRnzd2FgXZsndv3qFt4C2Hgo?usp=drive_link"
-    }, { 
- "name": "[UDEMY] - The Complete Computer Networks Course",
+    },
+    {
+      "name": "[UDEMY] - The Complete Computer Networks Course",
       "url": "https://drive.google.com/drive/folders/11IqZm6jzUNhZzEaayPox0FdJ1Qz6rIGH?usp=drive_link"
-    }, { 
- "name": "HQ 003 Full Book (THQ)",
+    },
+    {
+      "name": "HQ 003 Full Book (THQ)",
       "url": "https://drive.google.com/file/d/1fedHaDQbXs65TuQUVOV25xIbcP3Vuduc/preview"
-    }, { 
- "name": "Calculus SM yousaf (Solved)",
+    },
+    {
+      "name": "Calculus SM Yousaf (Solved)",
       "url": "https://drive.google.com/file/d/1-UY20UBhQw6sJVjjwbbkVx3Ij0ow4Ytw/preview"
-    }, { 
- "name": "Assembly Language CSAPP_2016",
+    },
+    {
+      "name": "Assembly Language CSAPP_2016",
       "url": "https://drive.google.com/file/d/1hvoZZ_roSz1GPEzocxBzlXgR1bnFV9XV/preview"
-    }, { 
- "name": "Professional Practice (2000)",
+    },
+    {
+      "name": "Professional Practice (2000)",
       "url": "https://drive.google.com/file/d/1i5jNZWz0-UBH_xxJYMPJfFXKYcFnZLMg/preview"
-    }, { 
- "name": "UE 171 - Economics All Past Papers",
+    },
+    {
+      "name": "UE 171 - Economics All Past Papers",
       "url": "https://drive.google.com/file/d/1Fov2cgvG73f_TRv9S_midYCJZPCQyUEg/preview"
-    }, { 
- "name": "UE 171 - Economics All Past Papers Short Question (Solved )",
+    },
+    {
+      "name": "UE 171 - Economics All Past Papers Short Question (Solved)",
       "url": "https://drive.google.com/file/d/1oNtppjr63VcdQP2YklQLUDk0aaT2pOOb/preview"
-    }, { 
- "name": "UE 171 - UE 171 - Economics All Past Papers Long Question (Solved )",
+    },
+    {
+      "name": "UE 171 - Economics All Past Papers Long Question (Solved)",
       "url": "https://drive.google.com/file/d/1v3eV10B3oCUCL8wKsY6K6V0sdeynTrhL/preview"
-    }, { 
- "name": "UE 171 - [Irwin Economics] Campbell R. McConnell, Stanley L. Brue Text Book",
+    },
+    {
+      "name": "UE 171 - [Irwin Economics] Campbell R. McConnell, Stanley L. Brue Text Book",
       "url": "https://drive.google.com/file/d/1X9MwbL294ViWAD00EoslBLy3QCXqv7ek/preview"
     },
- { 
- "name": "Digital Logic Design Morris Mano-2nd-edition-",
+    {
+      "name": "Digital Logic Design Morris Mano - 2nd Edition",
       "url": "https://drive.google.com/file/d/1FtsJJ47wsHouD2rLlZWcTCLCUshQ_GwQ/preview"
-    }, { 
- "name": "Computer Networking by Kurose Ross",
+    },
+    {
+      "name": "Computer Networking by Kurose Ross",
       "url": "https://drive.google.com/file/d/1HQRwnG6l0NaaFdZ3wr0qnoVvOc6IG4jq/preview"
-    }, { 
- "name": "Jay L. Devore - Probability and Statistics for Engineering",
+    },
+    {
+      "name": "Jay L. Devore - Probability and Statistics for Engineering",
       "url": "https://drive.google.com/file/d/1Mrm1c2uBGE1SalnNKpRgmjKzevukTFvT/preview"
-    }, { 
- "name": "Thomas L. Floyd - Digital Fundamentals-Prentice Hall",
+    },
+    {
+      "name": "Thomas L. Floyd - Digital Fundamentals - Prentice Hall",
       "url": "https://drive.google.com/file/d/1HC5hkGS4ifCv6NreukvAvsKfdEkI2VL9/preview"
-    }, { 
- "name": "Object Oriented Programming in C++- Robert Lafore",
+    },
+    {
+      "name": "Object Oriented Programming in C++ - Robert Lafore",
       "url": "https://drive.google.com/file/d/1HYqEWl_y_dzoZYKdc9QHBJeG9jqCpsA5/preview"
-    }, { 
- "name": "11th Class Stats",
+    },
+    {
+      "name": "11th Class Stats",
       "url": "https://drive.google.com/file/d/1HsfvaEuRoE2ks_fWeDEm3r0PFOzvAFK4/preview"
-    }, { 
- "name": "12 th class Stats",
+    },
+    {
+      "name": "12th Class Stats",
       "url": "https://drive.google.com/file/d/1IDlNJld6qrjKe8WggbKC5F-I2V2nHWQ_/preview"
-    }, { 
- "name": "Introduction to Psychology",
+    },
+    {
+      "name": "Introduction to Psychology",
       "url": "https://drive.google.com/file/d/1Hkj-31dSxsVa9MD9Z3PZnZCV8AfvNuPl/preview"
-    }, { 
- "name": "Probability & Statistics(G1)",
+    },
+    {
+      "name": "Probability & Statistics (G1)",
       "url": "https://drive.google.com/file/d/1I4-1fLlk2hmDPQDVg-tSXtD7G_aK4O03/preview"
-    }, { 
- "name": "Physcology hangouts",
+    },
+    {
+      "name": "Psychology Hangouts",
       "url": "https://drive.google.com/file/d/1Q_93fsii9Ec7KG5Ap-1WUfeXyxW0d0f6/preview"
-    }, { 
- "name": "DIGITAL LOGIC DESIGN HANDOUTS (Notes)",
+    },
+    {
+      "name": "DIGITAL LOGIC DESIGN HANDOUTS (Notes)",
       "url": "https://drive.google.com/file/d/1LoqDxAx7Lz1uAfVSvYZ-OlfN_Bj-PqbJ/preview"
-    }, { 
- "name": "BSIT 3rd Sem (Spring 2023) All Past Paper ",
+    },
+    {
+      "name": "BSIT 3rd Sem (Spring 2023) All Past Paper",
       "url": "https://drive.google.com/file/d/1JIqdMGmNS1X10VJs5BJa92pj7mELBiYE/preview"
-    }, { 
- "name": "BSIT 3rd Sem All Outlines (3)",
+    },
+    {
+      "name": "BSIT 3rd Sem All Outlines (3)",
       "url": "https://drive.google.com/file/d/1MmPGKIzMzRPz7gn4RSrHyv_gwOvS2i1r/preview"
     },
     {
       "name": "C Programming Notes",
       "url": "https://drive.google.com/file/d/14y1Ugck21TMI7f5DugUDPnlN7qrEkZPf/preview"
     },
-     {
-      "name": "Calculus and Analytic Geometry (11th Edition) ",
+    {
+      "name": "Calculus and Analytic Geometry (11th Edition)",
       "url": "https://drive.google.com/file/d/1tUtCp589r2zCbya3Q1-ZntjA4JZ1QS6L/preview"
     },
     {
@@ -129,7 +165,7 @@
       "url": "https://drive.google.com/file/d/1EPVT9fML_LJTQFNvjQ1L_j3hNYsp1FdI/preview"
     },
     {
-      "name": "Discrete Math and Its Applic - K Rosen (2012)",
+      "name": "Discrete Math and Its Applications - K Rosen (2012)",
       "url": "https://drive.google.com/file/d/18Dm5dwMNGUwZggLMbxlY0IZbWNmfzCs6/preview"
     },
     {
@@ -137,12 +173,11 @@
       "url": "https://drive.google.com/file/d/1bH593FJxyVKBI3kuPdIh1jBZDbXUSz6N/preview"
     },
     {
-      "name": " Pak Study For BS CS 1st Semester NUP and PU",
+      "name": "Pak Study For BS CS 1st Semester NUP and PU",
       "url": "https://drive.google.com/file/d/14C0DWVzMJ9syoOwWkegTUSp4KicNzyl3/preview"
     },
-
     {
-      "name": "DEITEL AND DEITEL - How to program [10th Edition]- C++ PROGRAMMING BY  BOOK",
+      "name": "DEITEL AND DEITEL - How to Program [10th Edition] - C++ PROGRAMMING BY BOOK",
       "url": "https://drive.google.com/file/d/12aM4VL309nWRPUO4LCbLD84-1DLdgmGK/preview"
     },
     {
