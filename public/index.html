@@ -13,346 +13,81 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
-    
+    /* Your CSS styles here... */
+    /* Example styles included: */
+
     body {
-        background-color: #362c2c; /* Dark Gray */
-        color: white;
-        font-family: 'Poppins', Arial, sans-serif;
-        transition: background-color 2s ease-in-out, color 0.5s ease;
+      background-color: #362c2c; /* Dark Gray */
+      color: white;
+      font-family: 'Poppins', Arial, sans-serif;
+      transition: background-color 2s ease-in-out, color 0.5s ease;
     }
+
     body:hover {
-        color: #17252a;
-        background-color: #3aafa9; /* Teal background on hover */
+      color: #17252a;
+      background-color: #3aafa9; /* Teal background on hover */
     }
 
-    /* Navbar Background when Open */
-    #navbarNavDropdown {
-        background: linear-gradient(135deg, #ff7e5f, #feb47b);
-        border-radius: 12px;
-        padding: 20px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        transition: all 0.5s ease-in-out;
+    .container-fluid {
+      max-width: 70%;
     }
-    .container-fluid{
-        max-width: 70%;
-    }
-    /* Navbar Links */
-    #navbarNavDropdown a {
-        color: black;
-        font-size: 18px;
-        text-align: center;
-        margin: 10px 0;
-        text-decoration: none;
-        padding: 10px;
-        display: block;
-        border-radius: 4px;
-        transition: transform 0.2s, background 0.3s;
-    }
-
-    
-    #navbarNavDropdown a:hover {
-        transform: scale(1.1);
-        background: rgba(255, 255, 255, 0.2);
-    }
-    .emb {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr); /* Two columns */
-        gap: 20px; /* Space between posts */
-        max-width: 100%;
-    }
-    
-    .post {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
-        grid-gap: 10px;
-        max-width: 100%;
-        overflow-x: auto;
-        word-wrap: break-word;
-    }
-    /* Navbar Links on Small Screens */
-    @media (max-width: 768px) {
-        #navbarNavDropdown {
-            text-align: center;
-        }
-    }
-    .container-fluid{
-        max-width: auto;
-    }
-    /* Social media icons */
-    .navbar-nav.d-flex.flex-row {
-        flex-direction: row; /* Keep icons in a row */
-        font-size: 2em; /* Adjust icon size */
-        margin: 0 5px;
-        transition: color 0.3s ease, transform 0.3s ease;
-        align-items: center; /* Align icons vertically */
-        justify-content: flex-end; /* Align icons to the right */
-        flex-wrap: wrap; /* Allow wrapping for smaller screens */
-    }
-
-    .whatsapp-icon:hover {
-        color: #25d366; /* WhatsApp green */
-        background-color: rgba(37, 211, 102, 0.2); /* Subtle background on hover */
-        transform: scale(1.2);
-    }
-
-    .fa-facebook-f:hover {
-        color: #1c91ff; /* Facebook blue */
-        background-color: rgba(28, 145, 255, 0.2); /* Subtle background on hover */
-        transform: scale(1.2);
-    }
-
-    .fa-instagram:hover {
-        color: #e4405f; /* Instagram pink-red */
-        background-color: rgba(228, 64, 95, 0.2); /* Subtle background on hover */
-        transform: scale(1.2);
-    }
-
-    /* Fancy remove button */
-    .remove {
-        background-color: #dc3545; /* Bootstrap red */
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        cursor: pointer;
-        font-size: 1rem;
-        border-radius: 50px;
-        margin-left: auto; /* Use auto margin for proper positioning */
-        transition: background-color 0.3s ease-in-out, transform 0.3s ease;
-    }
-
-    .remove:hover {
-        background-color: #c82333; /* Darker red */
-        transform: scale(1.1); /* Slight zoom on hover */
-    }
-
-    /* Gradient animation for post backgrounds */
-    @keyframes gradientAnimation {
-        0% {
-            background-position: 0% 50%;
-        }
-        50% {
-            background-position: 100% 50%;
-        }
-        100% {
-            background-position: 0% 50%;
-        }
-    }
-
- /* Content area styling */
-    #embeddedContent {
-    position: relative;
-        overflow-y: auto;
-        padding: 20px;
-        overflow-y: auto; /* Enable scrolling */
-        padding: 20px;
-        background-color:#ff7e5f;
-        border:4px solid snow;
-        border-radius: 10px;
-        margin: auto;
-    } 
 
     .post {
-        background: linear-gradient(270deg, rgba(34, 34, 34, 1), rgb(57, 14, 114)); /* Dark gradient */
-        background-size: 400% 400%;
-        animation: gradientAnimation 5s ease infinite; /* Animation for the gradient */
-        background-origin: padding-box;
-        border: 4px solid black;
-        width: 90%;
-        margin: auto;
-        padding: 8px;
-        border-radius: 5%;
-        color: white;
-        transition: transform 0.3s ease;
-        text-decoration: none;
+      background: linear-gradient(270deg, rgba(34, 34, 34, 1), rgb(57, 14, 114)); /* Dark gradient */
+      background-size: 400% 400%;
+      animation: gradientAnimation 5s ease infinite;
+      background-origin: padding-box;
+      border: 4px solid black;
+      width: 90%;
+      margin: auto;
+      padding: 8px;
+      border-radius: 5%;
+      color: white;
+      transition: transform 0.3s ease;
+      text-decoration: none;
     }
 
-    a {
-        text-decoration: none;
-        color: #ccc;
-    }
+    /* Other styles... */
+  </style>
 
-    #note {
-        color: #dc3545;
-        font-weight: bolder;
-    }
-
-    #not {
-        color: #dc3545;
-        text-decoration: line-through;
-        flex: 1;
-        font-weight: bolder;
-    }
-
-    .post:hover {
-        background: radial-gradient(270deg, rgb(138, 135, 135), rgb(248, 245, 255));
-        transform: scale(1.02); /* Slightly scale the post on hover */
-    }
-
-    /* Flex container for submission form and embedded content */
-    .flex-container {
-        display: flex;
-        flex-direction: row;
-        height: 100vh; /* Take full height of the viewport */
-    }
-
-    /* Submission form styling */
-    #submission-form {
-        width: 30%; /* Occupy 30% of the screen on desktop view */
-        background-color: #8dc6ff; /* Light background color */
-        padding: 20px;
-        border-right: 1px solid #ccc; /* Divider between sections */
-    }
-
-
-    /* Media queries for small devices */
-    @media (max-width: 768px) {
-        #submission-form {
-            width: 100%; /* Full width for smaller devices */
-            padding: 10px;
-            border-right: none;
-        }
-
-        .flex-container {
-            flex-direction: column; /* Stack submission form and embedded content vertically */
-            height: auto; /* Let the height adjust naturally */
-        }
-
-        .post {
-            width: 100%;
-            margin: 10px 0;
-            padding: 10px;
-        }
-
-        .remove {
-            margin-left: 0;
-            width: 100%; /* Full width button for easier interaction on mobile */
-            font-size: 0.9rem;
-        }
-
-        /* Social media icons alignment for mobile */
-        .navbar-nav.d-flex.flex-row {
-            margin: auto;
-            flex-direction: column; /* Stack the icons vertically */
-            font-size: 2em; /* Adjust icon size if necessary */
-        }
-
-        .whatsapp-icon, .fa-facebook-f, .fa-instagram {
-            margin-bottom: 10px; /* Add space between icons */
-            font-size: 2em; /* Adjust icon size if necessary */
-        }
-    }
-
-    /* Overflow Control for WhatsApp Icon */
-    .whatsapp-icon {
-        white-space: nowrap; /* Prevent text wrapping */
-        overflow: hidden; /* Hide overflow */
-        text-overflow: ellipsis; /* Add ellipsis for overflow text */
-    }
-
-    /*.navbar-toggler {
-        border: none; Remove default border 
-        background-color: transparent; /* Make background transparent
-        outline: none; /* Remove outline 
-        color: #1c91ff;
-    }
-
-    .navbar-toggler-icon {
-        display: inline-block;
-        width: 30px; /* Adjust width as needed
-        height: 5px; /* Adjust height for bars
-        background-color: #1c91ff; /* Color of the bars 
-        transition: background-color 0.3s ease; /* Smooth transition for color change
-    }
-
-    .navbar-toggler.collapsed .navbar-toggler-icon {
-        background-color: #1c91ff; /* Color when toggler is collapsed
-    }
-
-    .navbar-toggler-icon::before,
-    .navbar-toggler-icon::after {
-        content: " ";
-        display: block;
-        width: 100%;
-        height: 100%;
-        background-color: inherit; /* Inherit color from main icon
-        transition: transform 0.3s ease; /* Smooth transition for rotation 
-    }
-
-    .navbar-toggler.collapsed .navbar-toggler-icon::before {
-        transform: translateY(-8px); /* Move up bar before 
-    }
-
-    .navbar-toggler.collapsed .navbar-toggler-icon::after {
-        transform: translateY(8px); /* Move down bar after */
-    /*}*/
-</style>
-  <!-- Ensure closing of head tag -->
 </head>
 <body>
 
-  <!------------------------------Header--------------------------------->
+  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <!-- Navbar header with branding -->
       <a class="navbar-brand" href="#">UNIS</a>
-  
-      <!-- Toggler for mobile view -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-  
-      <!-- Navbar links and icons -->
+
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
-          <!--<li class="nav-item">
-            <a class="nav-link" href="https://puit.vercel.app/">PU IT</a>
-          </li>-->
           <li class="nav-item">
             <a class="nav-link" href="https://skillspectrumpk.vercel.app/">SKILL SPECTRUM</a>
           </li>
-          <!-- Dropdown for Social Links -->
+          <!-- Social Links Dropdown -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="socialLinksDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Social Links
             </a>
             <ul class="dropdown-menu" aria-labelledby="socialLinksDropdown">
-              <li>
-                <a class="dropdown-item" href="https://chat.whatsapp.com/GGByduLdV3uEhvzAdUFG9Q" target="_blank" title="Chat on WhatsApp">
-                  <i class="fab fa-whatsapp"></i> WhatsApp
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="https://www.facebook.com/share/g/XELu7wpG2gB2Muh1/" target="_blank" title="Visit Facebook">
-                  <i class="fab fa-facebook-f"></i> Facebook
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="https://ig.me/j/AbaAE8jX2hFVC6lM/" target="_blank" title="Visit Instagram">
-                  <i class="fab fa-instagram"></i> Instagram
-                </a>
-              </li>
+              <li><a class="dropdown-item" href="https://chat.whatsapp.com/GGByduLdV3uEhvzAdUFG9Q" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+              <li><a class="dropdown-item" href="https://www.facebook.com/share/g/XELu7wpG2gB2Muh1/" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+              <li><a class="dropdown-item" href="https://ig.me/j/AbaAE8jX2hFVC6lM/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
             </ul>
           </li>
         </ul>
+      </div>
     </div>
-</div>
+  </nav>
 
-        <!-- Search form -->
-        <div class="d-flex flex-column align-items-center">
-          <form class="d-flex mb-3 w-100 justify-content-center" role="search" onsubmit="return false;">
-            <input type="text" id="search" class="form-control me-2" placeholder="Search Books or notes..." style="max-width: 300px;">
-            <button class="btn btn-outline-success" type="button" id="search-button" onclick="searchPosts();">Search</button>
-          </form>
-        </div>
-    </nav>
-  
-  <!-- Container for submission form and links -->
+  <!-- Form to submit links -->
   <div class="container mt-4">
-    <!-- <h2>Upload Your Content Here</h2>
+    <h2>Upload Your Content Here</h2>
     <form id="linkForm">
       <div class="mb-3">
         <label for="linkName" class="form-label">Name of Link:</label>
@@ -367,7 +102,7 @@
       <p><strong id="note">NOTE:</strong> Provide comprehensive details about your content. Paste only HTTP links. If the link is from Google Drive, ensure it is a shareable link ending with <strong>preview</strong> not with <div id="not">view?usp=drive_link</div></p>
       
       <button type="submit" class="btn btn-primary">Submit Link</button>
-    </form> -->
+    </form>
 
     <div id="embeddedContent" class="mt-4"></div> <!-- Embedded content section -->
   </div>
@@ -375,74 +110,94 @@
   <!-- JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  
-  <script nonce="random_nonce_value">
-    let allLinks = [];
 
-    // Handle link form submission
+  <script>
+    // Handle form submission and link saving
     document.addEventListener('DOMContentLoaded', () => {
       loadLinks();
 
-      document.getElementById('linkForm').addEventListener('submit', async (event) => {
-        event.preventDefault();
+      // Check if the form exists
+      const linkForm = document.getElementById('linkForm');
+      if (linkForm) {
+        linkForm.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          const linkName = document.getElementById('linkName').value;
+          const linkUrl = document.getElementById('linkUrl').value;
 
-        const linkName = document.getElementById('linkName').value;
-        const linkUrl = document.getElementById('linkUrl').value;
-
-        await saveLink(linkName, linkUrl);
-        await loadLinks(); 
-      });
-    });
-
-    // Save link function
-    const saveLink = async (linkName, linkUrl) => {
-      try {
-        const response = await fetch('https://unis-green.vercel.app/saveLink', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ linkName, linkUrl }),
-        });
-
-        if (!response.ok) throw new Error('Network response was not ok');
-        const data = await response.json();
-        console.log('Link saved successfully:', data);
-      } catch (error) {
-        console.error('Failed to save link:', error);
-      }
-    };
-
-    // Load and display embedded links
-    async function loadLinks() {
-      console.log('loadLinks called');
-
-      const response = await fetch('https://unis-green.vercel.app/links');
-      const data = await response.json();
-
-      if (data.success) {
-        const uniqueLinks = data.data.filter((link, index, self) => self.findIndex(f => f.url === link.url) === index);
-
-        uniqueLinks.forEach((link) => {
-          if (!allLinks.find(existingLink => existingLink.url === link.url)) {
-            allLinks.push(link);
-          }
-        });
-
-        const embeddedContent = document.getElementById('embeddedContent');
-        embeddedContent.innerHTML = '';
-        allLinks.forEach((link) => {
-          embeddedContent.innerHTML += `
-            <div class="post">
-              <a href="${link.url}" target="_blank">
-                <h2 class="post-title">${link.name}</h2>
-              </a>
-            </div>`;
+          await saveLink(linkName, linkUrl);
+          await loadLinks();
         });
       } else {
-        console.error(data.message);
+        console.error("linkForm element not found.");
       }
+    });
+
+    // Save the link
+    const saveLink = async (linkName, linkUrl) => {
+  try {
+    const response = await fetch('/saveLink', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ linkName, linkUrl }), // Send the link data
+    });
+
+    if (!response.ok) throw new Error('Network response was not ok');
+    const data = await response.json();
+    console.log('Link saved successfully:', data);
+  } catch (error) {
+    console.error('Failed to save link:', error);
+  }
+};
+
+    // Load links
+    let allLinks = []; // Initialize the array to store links
+
+    // Load links
+async function loadLinks() {
+  try {
+    console.log('loadLinks called');
+
+    // Fetch data from the server (change to /links)
+    const response = await fetch('/links');
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
     }
 
-    // Search posts function
+    const data = await response.json();
+    console.log(data); // Log the response to inspect the data structure
+
+    if (data.success && data.data) {
+      const uniqueLinks = data.data.filter((link, index, self) =>
+        self.findIndex(f => f.url === link.url) === index
+      );
+
+      uniqueLinks.forEach((link) => {
+        if (!allLinks.find(existingLink => existingLink.url === link.url)) {
+          allLinks.push(link);
+        }
+      });
+
+      const embeddedContent = document.getElementById('embeddedContent');
+      embeddedContent.innerHTML = '';  // Clear existing content
+
+      allLinks.forEach((link) => {
+        embeddedContent.innerHTML += `
+          <div class="post">
+            <a href="${link.url}" target="_blank">
+              <h2 class="post-title">${link.name}</h2>
+            </a>
+          </div>`;
+      });
+    } else {
+      console.error('Error: Invalid data structure or no links found');
+    }
+  } catch (error) {
+    console.error('Failed to load links:', error);
+  }
+}
+
+
+    // Search function for posts
     $(document).ready(function() {
       $('#search').on('keyup', function() {
         var searchTerm = $(this).val().toLowerCase();
@@ -452,11 +207,6 @@
         });
       });
     });
-
-    // Load links on page load
-    window.onload = async function() {
-      await loadLinks();
-    };
   </script>
 </body>
 </html>
