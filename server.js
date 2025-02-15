@@ -44,8 +44,8 @@ app.post('/saveLink', async (req, res) => {
 
     try {
         // Assuming lowdb is being used for storage
-        const db = getDb(); // Function to get your database instance
-        await db.get('links').push({ name: linkName, url: linkUrl }).write();
+       await db.get('links').push({ name: linkName, url: linkUrl }).write();
+
 
         res.json({ success: true });
     } catch (error) {
