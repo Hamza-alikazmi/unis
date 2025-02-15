@@ -99,12 +99,12 @@
         <input type="url" id="linkUrl" name="linkUrl" class="form-control" required>
       </div>
 
-      <p><strong id="note">NOTE:</strong> Provide comprehensive details about your content. Paste only HTTP links. If the link is from Google Drive, ensure it is a shareable link ending with <strong>preview</strong> not with <div id="not">view?usp=drive_link</div></p>
-      
       <button type="submit" class="btn btn-primary">Submit Link</button>
     </form>
 
     <div id="embeddedContent" class="mt-4"></div> <!-- Embedded content section -->
+
+    <button class="btn btn-danger mt-4" onclick="clearLinks()">Clear All Links</button>
   </div>
 
   <!-- JavaScript -->
