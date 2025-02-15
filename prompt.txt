@@ -1,0 +1,94 @@
+Vercel does not support local file-based databases like `lowdb` in production because it uses a serverless architecture where the filesystem is ephemeral. This means that any changes you make to files during runtime will not persist across different instances or requests. Serverless functions are stateless by design, so when Vercel spins up a new instance of your app, all data stored locally is lost.
+
+To handle this situation and ensure that your data persists, you'll need to switch to a more suitable database that is designed for use in serverless environments.
+
+### Options to Consider for Vercel:
+1. **Cloud Databases**:
+   - **MongoDB Atlas**: A popular cloud database for modern applications. You can use MongoDB with Vercel by integrating it using the `mongoose` or `mongodb` Node.js package.
+   - **Firebase Firestore**: A flexible and scalable cloud database that integrates well with serverless applications. It also offers real-time data synchronization.
+   - **Supabase**: An open-source alternative to Firebase with a Postgres database.
+   - **PlanetScale**: A serverless database solution based on MySQL.
+
+2. **External APIs**:
+   If your data structure is simple (just storing links, for example), you might also consider using a service that provides APIs for storing and retrieving data, like:
+   - **Hasura**: Provides instant GraphQL APIs over your database.
+   - **Airtable**: Easy-to-use online databases with APIs.
+
+### Steps for Migrating to a Cloud Database (e.g., MongoDB Atlas):
+1. **Create a MongoDB Atlas Account**: 
+   - Go to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) and create a free cluster. Atlas provides a cloud-based MongoDB database that you can use in serverless environments like Vercel.
+
+2. **Install MongoDB Dependencies**:
+   In your project, install the required MongoDB packages:
+   ```bash
+   npm install mongoose
+   ```
+
+3. **Set Up the Database Connection**:
+   Update your `server.js` to connect to MongoDB using `mongoose` (or `mongodb`):
+   ```js
+   import mongoose from 'mongoose';
+
+   // Connect to MongoDB Atlas
+   const mongoUri = process.env.MONGO_URI; // Use an environment variable for the connection string
+
+   mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
+     .then(() => console.log('Connected to MongoDB Atlas'))
+     .catch(err => console.log('Error connecting to MongoDB Atlas:', err));
+
+   // Define a schema and model for storing links
+   const linkSchema = new mongoose.Schema({
+     name: String,
+     url: String
+   });
+
+   const Link = mongoose.model('Link', linkSchema);
+   ```
+
+4. **Modify Routes to Use MongoDB**:
+   Replace your `lowdb` logic with MongoDB calls using Mongoose. For example:
+   ```js
+   app.post('/saveLink', async (req, res) => {
+     const { linkName, linkUrl } = req.body;
+
+     if (!linkName || !linkUrl) {
+       return res.status(400).json({ success: false, message: 'Link name and URL are required' });
+     }
+
+     try {
+       const newLink = new Link({ name: linkName, url: linkUrl });
+       await newLink.save();
+       res.json({ success: true });
+     } catch (error) {
+       console.error('Error saving link:', error);
+       res.status(500).json({ success: false, message: 'Error saving link' });
+     }
+   });
+
+   app.get('/links', async (req, res) => {
+     try {
+       const links = await Link.find(); // Get all links from MongoDB
+       res.json({
+         success: true,
+         data: links
+       });
+     } catch (error) {
+       res.status(500).json({
+         success: false,
+         message: 'Error fetching links'
+       });
+     }
+   });
+   ```
+
+5. **Deploy to Vercel**:
+   - Make sure you set the `MONGO_URI` environment variable in the Vercel dashboard.
+   - Vercel will handle deploying your app, and your database will now be connected to MongoDB Atlas.
+
+### General Recommendations:
+- **Environment Variables**: Store sensitive information like your database connection string in environment variables. Vercel provides a UI to manage these variables in the dashboard.
+- **Authentication and Authorization**: If you're storing sensitive data, make sure to add authentication and authorization to secure your API.
+
+By switching to a cloud database, you’ll ensure that your data is persistent across requests, even on serverless platforms like Vercel.
+
+Let me know if you need more guidance on this!
