@@ -14,8 +14,6 @@
 
   <style>
     /* Your CSS styles here... */
-    /* Example styles included: */
-
     body {
       background-color: #362c2c; /* Dark Gray */
       color: white;
@@ -75,7 +73,7 @@
               Social Links
             </a>
             <ul class="dropdown-menu" aria-labelledby="socialLinksDropdown">
-              <li><a class="dropdown-item" href="https://chat.whatsapp.com/GGByduLdV3uEhvzAdUFG9Q" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+              <li><a class="dropdown-item" href="https://chat.whatsapp.com/HJm9Ylu4E5bI4Hf1vLTGg8" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
               <li><a class="dropdown-item" href="https://www.facebook.com/share/g/XELu7wpG2gB2Muh1/" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
               <li><a class="dropdown-item" href="https://ig.me/j/AbaAE8jX2hFVC6lM/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
             </ul>
@@ -84,6 +82,12 @@
       </div>
     </div>
   </nav>
+
+  <!-- Search Bar for Filtering -->
+  <div class="container mt-4">
+    <h2>Search and Filter Links</h2>
+    <input type="text" id="searchLinks" class="form-control" placeholder="Search by link name or URL" />
+  </div>
 
   <!-- Form to submit links -->
   <div class="container mt-4">
@@ -104,7 +108,7 @@
 
     <div id="embeddedContent" class="mt-4"></div> <!-- Embedded content section -->
 
-    <button class="btn btn-danger mt-4" onclick="clearLinks()">Clear All Links</button>
+    <!--<button class="btn btn-danger mt-4" onclick="clearLinks()">Clear All Links</button>-->
   </div>
 
   <!-- JavaScript -->
@@ -134,79 +138,102 @@
 
     // Save the link
     const saveLink = async (linkName, linkUrl) => {
-  try {
-    const response = await fetch('/saveLink', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ linkName, linkUrl }), // Send the link data
-    });
+      try {
+        const response = await fetch('/saveLink', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ linkName, linkUrl }), // Send the link data
+        });
 
-    if (!response.ok) throw new Error('Network response was not ok');
-    const data = await response.json();
-    console.log('Link saved successfully:', data);
-  } catch (error) {
-    console.error('Failed to save link:', error);
-  }
-};
+        if (!response.ok) throw new Error('Network response was not ok');
+        const data = await response.json();
+        console.log('Link saved successfully:', data);
+      } catch (error) {
+        console.error('Failed to save link:', error);
+      }
+    };
 
     // Load links
     let allLinks = []; // Initialize the array to store links
 
     // Load links
-async function loadLinks() {
-  try {
-    console.log('loadLinks called');
+    async function loadLinks() {
+      try {
+        console.log('loadLinks called');
 
-    // Fetch data from the server (change to /links)
-    const response = await fetch('/links');
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-
-    const data = await response.json();
-    console.log(data); // Log the response to inspect the data structure
-
-    if (data.success && data.data) {
-      const uniqueLinks = data.data.filter((link, index, self) =>
-        self.findIndex(f => f.url === link.url) === index
-      );
-
-      uniqueLinks.forEach((link) => {
-        if (!allLinks.find(existingLink => existingLink.url === link.url)) {
-          allLinks.push(link);
+        // Fetch data from the server (change to /links)
+        const response = await fetch('/links');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
         }
-      });
 
-      const embeddedContent = document.getElementById('embeddedContent');
-      embeddedContent.innerHTML = '';  // Clear existing content
+        const data = await response.json();
+        console.log(data); // Log the response to inspect the data structure
 
-      allLinks.forEach((link) => {
-        embeddedContent.innerHTML += `
-          <div class="post">
-            <a href="${link.url}" target="_blank">
-              <h2 class="post-title">${link.name}</h2>
-            </a>
-          </div>`;
-      });
-    } else {
-      console.error('Error: Invalid data structure or no links found');
+        if (data.success && data.data) {
+          const uniqueLinks = data.data.filter((link, index, self) =>
+            self.findIndex(f => f.url === link.url) === index
+          );
+
+          uniqueLinks.forEach((link) => {
+            if (!allLinks.find(existingLink => existingLink.url === link.url)) {
+              allLinks.push(link);
+            }
+          });
+
+          const embeddedContent = document.getElementById('embeddedContent');
+          embeddedContent.innerHTML = '';  // Clear existing content
+
+          allLinks.forEach((link) => {
+            embeddedContent.innerHTML += `
+              <div class="post">
+                <a href="${link.url}" target="_blank">
+                  <h2 class="post-title">${link.name}</h2>
+                </a>
+              </div>`;
+          });
+        } else {
+          console.error('Error: Invalid data structure or no links found');
+        }
+      } catch (error) {
+        console.error('Failed to load links:', error);
+      }
     }
-  } catch (error) {
-    console.error('Failed to load links:', error);
-  }
-}
 
-
-    // Search function for posts
+    // Filter links by name and URL
     $(document).ready(function() {
-      $('#search').on('keyup', function() {
+      $('#searchLinks').on('keyup', function() {
         var searchTerm = $(this).val().toLowerCase();
-        $('.post').each(function() {
+        
+        // Loop through each link post and filter based on name or URL
+        $('#embeddedContent .post').each(function() {
           var postTitle = $(this).find('.post-title').text().toLowerCase();
-          $(this).toggle(postTitle.includes(searchTerm));
+          var postUrl = $(this).find('a').attr('href').toLowerCase();
+          
+          // Show or hide the post based on whether the search term matches the title or URL
+          if (postTitle.includes(searchTerm) || postUrl.includes(searchTerm)) {
+            $(this).show();
+          } else {
+            $(this).hide();
+          }
         });
       });
     });
+//function clearLinks() {
+  // Clear the embedded content section
+  //document.getElementById('embeddedContent').innerHTML = '';
+  
+  // Optionally, clear the links from the server as well, if needed
+  // Example:
+  // fetch('/clearLinks', { method: 'DELETE' }).then(response => {
+  //   if (response.ok) {
+  //     console.log('All links cleared');
+  //   } else {
+  //     console.error('Failed to clear links');
+  //   }
+  // });
+//}
+    
   </script>
 </body>
 </html>
